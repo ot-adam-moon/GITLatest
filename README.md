@@ -12,7 +12,7 @@ Motivation
   *  I want a quick way to run <code>rake bootstrap</code> for all projects in parallel
   *  I don't want to be afraid to reboot my box anymore fearing things won't work.
 
-SETUP
+Setup
 =====
 
 * Install [node.js](http://nodejs.org/)
