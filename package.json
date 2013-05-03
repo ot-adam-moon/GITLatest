@@ -1,0 +1,12 @@
+{
+  "name": "WebClients",
+  "version": "1.0.0",
+  "dependencies": {
+    "growl": "latest",
+    "grunt-cli": "latest"
+  },
+  "devDependencies": {
+    "grunt": "latest",
+    "async" : "latest"
+  }
+}
