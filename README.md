@@ -18,9 +18,9 @@ Setup
 * Install [node.js](http://nodejs.org/)
 * Install [Growl for Windows](http://www.growlforwindows.com/gfw/) *Note: THIS IS OPTIONAL
 * Make sure all projects are under one directory Ex: Projects\
-* 'cd ProjectsFolderYouChoose'
-* 'git clone git@github.com:ot-adam-moon/GITLatest.git'
-* 'npm install .'
+* `cd ProjectsFolderYouChoose`
+* `git clone git@github.com:ot-adam-moon/GITLatest.git`
+* `npm install .`
 * `grunt`  *NOTE: this will run `git status` for all projects
 
 How do I control the project list?
