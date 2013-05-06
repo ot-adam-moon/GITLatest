@@ -21,6 +21,7 @@ Setup
 * 'cd ProjectsFolderYouChoose'
 * 'git clone git@github.com:ot-adam-moon/GITLatest.git'
 * 'npm install .'
+* `grunt`  *NOTE: this will run `git status` for all projects
 
 How do I control the project list?
 ==================================
