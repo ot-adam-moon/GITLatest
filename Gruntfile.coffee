@@ -2,10 +2,13 @@ module.exports = (grunt) ->
   async = require("async")
   spawn = require('child_process').spawn
   growl = require('growl')
+
+  projects = ['ProductFulfillment','EnterpriseServices','WebClients','CustomerFiltering','SpendOnLife','OneTechnologies.Framework']
   # Configure Grunt
   grunt.initConfig
 
 # Make task shortcuts
+  grunt.registerTask 'scratch', ['webstop','svcu','del','clone','rmf']
   grunt.registerTask 'default', ['st']
   grunt.registerTask 'sanity', ['pum','su','rmf']
   grunt.registerTask 'up', ['web','svc']
@@ -18,10 +21,16 @@ module.exports = (grunt) ->
     run 'SVC_INSTALL.cmd', project, this.async()
   grunt.registerTask 'web', (project) ->
     run 'WEBUTIL.cmd ', project, this.async()
+  grunt.registerTask 'webstop', (project) ->
+    run 'WEBUTIL_STOP.cmd ', project, this.async()
+  grunt.registerTask 'del', (project) ->
+    run 'DELETE_ALL.cmd ', project, this.async()
   grunt.registerTask 'svc', (project) ->
     run 'SVCUTIL.cmd', project, this.async()
   grunt.registerTask 'com', (project) ->
     run 'GIT_CHECKOUT_MASTER.cmd', project, this.async()
+  grunt.registerTask 'clone', 'GIT CLONE', (project) ->
+    run 'GIT_CLONE.cmd', project, this.async()
   grunt.registerTask 'cob', (project, branch) ->
     run 'GIT_CHECKOUT_BRANCH.cmd', project, this.async(), branch
   grunt.registerTask 'pum', (project) ->
@@ -40,37 +49,37 @@ module.exports = (grunt) ->
     run 'RAKE_SQL.cmd', project, this.async()
 
 
+  setupWork = (script, project, cb, arg2) ->
+    workList = []
+    i = 0
+    unless typeof (project) is "undefined"
+      workList.push async.apply(cmd, script, project ,cb, arg2)
+    while i < projects.length
+      workList.push async.apply(cmd, script, projects[i], cb, arg2)
+      i++
+    workList
+
   run = (script, project, cb, arg2) ->
     unless typeof (project) is "undefined"
       cmd script, project, arg2
     else
-      async.parallel [(callback) ->
-        cmd script, 'ProductFulfillment', callback, arg2
-      , (callback) ->
-          cmd script, 'EnterpriseServices', callback, arg2
-      , (callback) ->
-          cmd script, 'WebClients', callback, arg2
-      , (callback) ->
-          cmd script, 'CustomerFiltering', callback, arg2
-      , (callback) ->
-          cmd script, 'SpendOnLife', callback, arg2
-        # optional callback
-      ], (err, results) ->
-        cb()
+      workList = setupWork(script, project, cb, arg2)
+      async.parallel workList,
+        (err, results) ->
+          cb()
 
   cmd = (script, project, callback, arg2) ->
+    console.log (script + " " + project)
     args = [project]
     unless typeof (arg2) is "undefined"
       args.push arg2
 
     cmdProcess = spawn(script, args, () ->
-      unless typeof (callback) is "undefined"
-        console.log "here"
-#        callback()
+      callback(null, "")
     )
     cmdProcess.stdout.on "data", (data) ->
       msg = "" + data
-      grunt.log.write msg
+      grunt.log.write msg + '\n-----------------------------------\n'
 
     cmdProcess.stderr.on "data", (data) ->
       msg = "" + data
@@ -78,10 +87,10 @@ module.exports = (grunt) ->
 
     cmdProcess.on "exit", (code) ->
       msg = script
-      msg = msg.replace(/\_/g, ' ').replace(/\.cmd/, '').toLowerCase() + project + ' COMPLETED\n'
+      msg = msg.replace(/\_/g, ' ').replace(/\.cmd/, '').toLowerCase() + project + ' COMPLETED\n-----------------------------------\n'
       grunt.log.write msg
       growlMsg(msg)
-      callback(null, "")
+#      callback(null, "")
 
   growlMsg = (msg) ->
     unless typeof (growl) is "undefined"
