@@ -10,7 +10,7 @@ module.exports = (grunt) ->
 # Make task shortcuts
   grunt.registerTask 'scratch', ['webstop','svcu','del','clone','rmf']
   grunt.registerTask 'default', ['st']
-  grunt.registerTask 'sanity', ['pum','su','rmf']
+  grunt.registerTask 'sanity', ['pum','su','st','rmf']
   grunt.registerTask 'up', ['web','svc']
 
   grunt.registerTask 'db', 'REBUILD-DB', (project) ->
@@ -40,7 +40,7 @@ module.exports = (grunt) ->
   grunt.registerTask 'su', (project) ->
     run 'GIT_SUBMODULE_UPDATE.cmd', project, this.async()
   grunt.registerTask 'rh', (project) ->
-     run 'GIT_RESET_HEAD.cmd', project, this.async()
+     run 'GIT_RESET_HARD.cmd', project, this.async()
   grunt.registerTask 'rmf', (project) ->
     run 'RUN_ME_FIRST.cmd', project, this.async()
   grunt.registerTask 'rb', (project) ->
@@ -60,13 +60,18 @@ module.exports = (grunt) ->
     workList
 
   run = (script, project, cb, arg2) ->
+    projCount = projects.length
+    cnt = 0
+    callback = (err, results) ->
+              cnt = cnt + 1
+              if cnt == projCount
+                cb()
     unless typeof (project) is "undefined"
-      cmd script, project, arg2
+      cmd script, project, callback, arg2
     else
-      workList = setupWork(script, project, cb, arg2)
+      workList = setupWork(script, project, callback, arg2)
       async.parallel workList,
-        (err, results) ->
-          cb()
+        callback
 
   cmd = (script, project, callback, arg2) ->
     console.log (script + " " + project)
@@ -75,7 +80,6 @@ module.exports = (grunt) ->
       args.push arg2
 
     cmdProcess = spawn(script, args, () ->
-      callback(null, "")
     )
     cmdProcess.stdout.on "data", (data) ->
       msg = "" + data
@@ -86,11 +90,11 @@ module.exports = (grunt) ->
       grunt.log.write msg
 
     cmdProcess.on "exit", (code) ->
-      msg = script
+      msg = script + " "
       msg = msg.replace(/\_/g, ' ').replace(/\.cmd/, '').toLowerCase() + project + ' COMPLETED\n-----------------------------------\n'
       grunt.log.write msg
       growlMsg(msg)
-#      callback(null, "")
+      callback(null, "")
 
   growlMsg = (msg) ->
     unless typeof (growl) is "undefined"
