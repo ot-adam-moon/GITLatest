@@ -49,9 +49,8 @@ What if i only want to run a command for one project?
 
 add an argument to your command indicating the project you want
 
-Ex: grunt scratch:ProjectName
-    grunt st:ProjectName
-    
+Ex: <code>grunt scratch:ProjectName</code>
+    <code>grunt st:ProjectName</code>
  
 Command List
 ============
@@ -78,7 +77,7 @@ Command List
 | <code>grunt svc</code> | svcutil.bat i |
 | <code>grunt up</code> | webutil.bat all, svcutil.bat start |
 | <code>grunt sanity</code> | git submodule update,  git pull upstream master, run-me-first.bat |
-| <code>grunt scratch</code> | webutil.bat stop, svcutil.bat u, git clone, run-me-first.bat |
+| <code>grunt scratch</code> | webutil.bat stop, svcutil.bat u, RD "%project%" /S /Q git clone, run-me-first.bat |
 
 
 
