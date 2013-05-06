@@ -77,7 +77,7 @@ Command List
 | <code>grunt svc</code> | svcutil.bat i |
 | <code>grunt up</code> | webutil.bat all, svcutil.bat start |
 | <code>grunt sanity</code> | git submodule update,  git pull upstream master, run-me-first.bat |
-| <code>grunt scratch</code> | webutil.bat stop, svcutil.bat u, RD "%project%" /S /Q git clone, run-me-first.bat |
+| `grunt scratch` | `webutil.bat stop, svcutil.bat u, RD "%project%" /S /Q, git clone, run-me-first.bat` |
 
 
 
