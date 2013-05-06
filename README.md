@@ -44,5 +44,23 @@ What does this do?
  * <code>git clone</code> for all projects
  * runs run_me_first.bat for each project
 
+What if i only want to run a command for one project?
+=====================================================
+
+add an argument to your command indicating the project you want
+
+Ex: grunt scratch:ProjectName
+    grunt st:ProjectName
+    
+ 
+Command List
+============
+
+| grunt         | what it does  |
+| ------------- |:-------------:|
+| <code>grunt st</code>     | git status |
+| col 2 is      | centered      |
+| zebra stripes | are neat      |
+
 
 
