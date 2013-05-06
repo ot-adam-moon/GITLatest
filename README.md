@@ -18,9 +18,16 @@ Setup
 * Install [node.js](http://nodejs.org/)
 * Install [Growl for Windows](http://www.growlforwindows.com/gfw/) *Note: THIS IS OPTIONAL
 * Make sure all projects are under one directory Ex: Projects\
-* <code>cd Projects</code>
+* <code>cd ProjectsFolderYouChoose</code>
 * <code>git clone git@github.com:ot-adam-moon/GITLatest.git</code>
 * run <code>npm install .</code>
+
+Build Projects from Scratch
+===========================
+
+* create a new directory where you want all projects to be under
+* <code>cd directoryYouChose</code>
+* grunt scratch
 
 
 
