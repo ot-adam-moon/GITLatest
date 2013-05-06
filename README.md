@@ -26,7 +26,7 @@ How do I control the project list?
 ==================================
 
 * Open gruntfile.coffee
-* 2nd line <code>projects = ['ProductFulfillment','EnterpriseServices','WebClients','CustomerFiltering','SpendOnLife','OneTechnologies.Framework']</code>
+* 2nd line <code>projects = [...]</code>
 * edit array to control the Project List
 
 
