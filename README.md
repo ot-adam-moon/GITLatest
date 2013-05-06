@@ -59,8 +59,9 @@ Command List
 | ------------- |:-------------:|
 | `grunt` | `git status` |
 | `grunt default` | `git status` |
-| <code>grunt st</code> | `git status` |
-| <code>grunt pum</code> | `git submodule update`, `git pull upstream master` |
+| `grunt st` | `git status` |
+| `grunt pum` | `git submodule update`, `git pull upstream master` |
+| `grunt pr` | `git submodule update`, `git pull rebase` |
 | <code>grunt clone</code> | `git clone` |
 | <code>grunt clean</code> | `git clean` |
 | <code>grunt com</code> | `git checkout master` |
