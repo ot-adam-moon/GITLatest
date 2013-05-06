@@ -38,11 +38,11 @@ Build Projects from Scratch
 * <code>grunt scratch</code>
 <br/>
 What does this do?
-* stops all current webs running
-* uninstall all services installed for the projects listed
-* delete all folders that match each project name
-* <code>git clone</code> for all projects
-* runs run_me_first.bat for each project
+ * stops all current webs running
+ * uninstall all services installed for the projects listed
+ * delete all folders that match each project name
+ * <code>git clone</code> for all projects
+ * runs run_me_first.bat for each project
 
 
 
