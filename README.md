@@ -63,6 +63,7 @@ Command List
 | <code>grunt st</code> | git status |
 | <code>grunt pum</code> | git submodule update, git pull upstream master |
 | <code>grunt clone</code> | git clone |
+| <code>grunt clean</code> | git clean |
 | <code>grunt com</code> | git checkout master |
 | <code>grunt su</code> | git submodule update |
 | <code>grunt rh</code> | git reset head --hard |
@@ -75,6 +76,9 @@ Command List
 | <code>grunt svc</code> | svcutil.bat start |
 | <code>grunt svcu</code> | svcutil.bat u |
 | <code>grunt svc</code> | svcutil.bat i |
+| <code>grunt up</code> | webutil.bat all, svcutil.bat start |
+| <code>grunt sanity</code> | git submodule update,  git pull upstream master, run-me-first.bat |
+| <code>grunt scratch</code> | webutil.bat stop, svcutil.bat u, git clone, run-me-first.bat |
 
 
 
