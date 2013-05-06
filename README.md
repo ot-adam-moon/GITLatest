@@ -61,7 +61,20 @@ Command List
 | <code>grunt</code> | git status |
 | <code>grunt default</code> | git status |
 | <code>grunt st</code> | git status |
-| zebra stripes | are neat      |
+| <code>grunt pum</code> | git submodule update, git pull upstream master |
+| <code>grunt clone</code> | git clone |
+| <code>grunt com</code> | git checkout master |
+| <code>grunt su</code> | git submodule update |
+| <code>grunt rh</code> | git reset head --hard |
+| <code>grunt rmf</code> | run-me-first.bat |
+| <code>grunt rboot</code> | rake bootstrap |
+| <code>grunt rsql</code> | rake sql |
+| <code>grunt db</code> | rebuild-db.bat |
+| <code>grunt web</code> | webutil.bat all |
+| <code>grunt webstop</code> | webutil.bat stop |
+| <code>grunt svc</code> | svcutil.bat start |
+| <code>grunt svcu</code> | svcutil.bat u |
+| <code>grunt svc</code> | svcutil.bat i |
 
 
 
