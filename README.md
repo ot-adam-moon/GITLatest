@@ -20,14 +20,28 @@ Setup
 * Make sure all projects are under one directory Ex: Projects\
 * <code>cd ProjectsFolderYouChoose</code>
 * <code>git clone git@github.com:ot-adam-moon/GITLatest.git</code>
-* run <code>npm install .</code>
+* <code>npm install .</code>
+
+How do I control the project list?
+==================================
+
+* Open gruntfile.coffee
+* 2nd line <code>projects = ['ProductFulfillment','EnterpriseServices','WebClients','CustomerFiltering','SpendOnLife','OneTechnologies.Framework']</code>
+* edit array to control the Project List
+
 
 Build Projects from Scratch
 ===========================
 
 * create a new directory where you want all projects to be under
 * <code>cd directoryYouChose</code>
-* grunt scratch
+* <code>grunt scratch</code>
+     What does this do?
+        * stops all current webs running
+        * uninstall all services installed for the projects listed
+        * delete all folders that match each project name
+        * <code>git clone</code> for all projects
+        * runs run_me_first.bat for each project
 
 
 
