@@ -30,7 +30,6 @@ How do I control the project list?
 * 2nd line <code>projects = [...]</code>
 * edit array to control the Project List
 
-
 Build Projects from Scratch
 ===========================
 
@@ -56,7 +55,7 @@ Ex: <code>grunt scratch:ProjectName</code>
 Command List
 ============
 
-| grunt         | what it does  |
+| grunt command | what it does  |
 | ------------- |:-------------:|
 | `grunt` | `git status` |
 | `grunt default` | `git status` |
@@ -75,7 +74,7 @@ Command List
 | <code>grunt webstop</code> | `webutil.bat stop` |
 | <code>grunt svc</code> | `svcutil.bat start` |
 | <code>grunt svcu</code> | `svcutil.bat u` |
-| <code>grunt svc</code> | `svcutil.bat i` |
+| <code>grunt svci</code> | `svcutil.bat i` |
 | <code>grunt up</code> | `webutil.bat all`, `svcutil.bat start` |
 | <code>grunt sanity</code> | `git submodule update`, `git pull upstream master`, `run-me-first.bat` |
 | `grunt scratch` | `webutil.bat stop`, `svcutil.bat u`, `RD "%project%" /S /Q`, `git clone, run-me-first.bat` |
