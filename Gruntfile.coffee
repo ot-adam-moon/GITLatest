@@ -1,9 +1,9 @@
 module.exports = (grunt) ->
+  projects = ['ProductFulfillment','EnterpriseServices','WebClients','CustomerFiltering','SpendOnLife','OneTechnologies.Framework']
   async = require("async")
   spawn = require('child_process').spawn
   growl = require('growl')
 
-  projects = ['ProductFulfillment','EnterpriseServices','WebClients','CustomerFiltering','SpendOnLife','OneTechnologies.Framework']
   # Configure Grunt
   grunt.initConfig
 
