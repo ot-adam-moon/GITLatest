@@ -58,8 +58,9 @@ Command List
 
 | grunt         | what it does  |
 | ------------- |:-------------:|
-| <code>grunt st</code>     | git status |
-| col 2 is      | centered      |
+| <code>grunt</code> | git status |
+| <code>grunt default</code> | git status |
+| <code>grunt st</code> | git status |
 | zebra stripes | are neat      |
 
 
