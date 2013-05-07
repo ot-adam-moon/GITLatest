@@ -4,8 +4,7 @@
   "dependencies": {
     "growl": "latest",
     "grunt": "latest",
-    "async" : "latest",
-    "nanotimer" : "latest"
+    "async" : "latest"
   },
     "scripts": {
       "preinstall": "npm i -g grunt-cli"

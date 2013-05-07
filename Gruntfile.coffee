@@ -4,6 +4,7 @@ module.exports = (grunt) ->
   spawn = require('child_process').spawn
   growl = require('growl')
 
+
   # Configure Grunt
   grunt.initConfig
 
@@ -15,6 +16,8 @@ module.exports = (grunt) ->
 
   grunt.registerTask 'db', 'REBUILD-DB', (project) ->
     run 'REBUILD_DB.cmd', project, this.async()
+  grunt.registerTask 'certs', 'INSTALL CERTIFICATES', (project) ->
+    run 'INSTALL_CERTS.cmd', project, this.async()
   grunt.registerTask 'svcu','Services Uninstall', (project) ->
     run 'SVC_UNINSTALL.cmd', project, this.async()
   grunt.registerTask 'svci', 'Services Install', (project) ->
@@ -40,14 +43,13 @@ module.exports = (grunt) ->
   grunt.registerTask 'su', (project) ->
     run 'GIT_SUBMODULE_UPDATE.cmd', project, this.async()
   grunt.registerTask 'rh', (project) ->
-     run 'GIT_RESET_HARD.cmd', project, this.async()
+    run 'GIT_RESET_HARD.cmd', project, this.async()
   grunt.registerTask 'rmf', (project) ->
     run 'RUN_ME_FIRST.cmd', project, this.async()
   grunt.registerTask 'rb', (project) ->
     run 'RAKE_BOOTSTRAP.cmd', project, this.async()
   grunt.registerTask 'rsql', (project) ->
     run 'RAKE_SQL.cmd', project, this.async()
-
 
   setupWork = (script, project, cb, arg2) ->
     workList = []
@@ -62,9 +64,12 @@ module.exports = (grunt) ->
   run = (script, project, cb, arg2) ->
     projCount = projects.length
     cnt = 0
+    startTime = new Date()
     callback = (err, results) ->
               cnt = cnt + 1
               if cnt == projCount
+                endTime = new Date()
+                console.log script + ' COMPLETE for all projects in : ' + ((endTime-startTime)/1000).toFixed(2) + ' seconds'
                 cb()
     unless typeof (project) is "undefined"
       cmd script, project, callback, arg2
@@ -83,6 +88,7 @@ module.exports = (grunt) ->
     )
     cmdProcess.stdout.on "data", (data) ->
       msg = "" + data
+      console.log(grunt.verbose)
       grunt.log.write msg + '\n-----------------------------------\n'
 
     cmdProcess.stderr.on "data", (data) ->
