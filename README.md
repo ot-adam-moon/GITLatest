@@ -62,22 +62,23 @@ Command List
 | `grunt st` | `git status` |
 | `grunt pum` | `git submodule update`, `git pull upstream master` |
 | `grunt pr` | `git submodule update`, `git pull rebase` |
-| <code>grunt clone</code> | `git clone` |
-| <code>grunt clean</code> | `git clean` |
-| <code>grunt com</code> | `git checkout master` |
-| <code>grunt su</code> | `git submodule update` |
-| <code>grunt rh</code> | `git reset head --hard` |
-| <code>grunt rmf</code> | `run-me-first.bat` |
-| <code>grunt rboot</code> | `rake bootstrap` |
-| <code>grunt rsql</code> | `rake sql` |
-| <code>grunt db</code> | `rebuild-db.bat` |
-| <code>grunt web</code> | `webutil.bat all` |
-| <code>grunt webstop</code> | `webutil.bat stop` |
-| <code>grunt svc</code> | `svcutil.bat start` |
-| <code>grunt svcu</code> | `svcutil.bat u` |
-| <code>grunt svci</code> | `svcutil.bat i` |
-| <code>grunt up</code> | `webutil.bat all`, `svcutil.bat start` |
-| <code>grunt sanity</code> | `git submodule update`, `git pull upstream master`, `run-me-first.bat` |
+| `grunt cert` | `installs necessary certs with INSTALL_CERTS.cmd` |
+| `grunt clone` | `git clone` |
+| `grunt clean` | `git clean` |
+| `grunt com` | `git checkout master` |
+| `grunt su` | `git submodule update` |
+| `grunt rh` | `git reset head --hard` |
+| `grunt rmf` | `run-me-first.bat` |
+| `grunt rboot` | `rake bootstrap` |
+| `grunt rsql` | `rake sql` |
+| `grunt db` | `rebuild-db.bat` |
+| `grunt web` | `webutil.bat all` |
+| `grunt webstop` | `webutil.bat stop` |
+| `grunt svc` | `svcutil.bat start` |
+| `grunt svcu` | `svcutil.bat u` |
+| `grunt svci` | `svcutil.bat i` |
+| `grunt up` | `webutil.bat all`, `svcutil.bat start` |
+| `grunt sanity` | `git submodule update`, `git pull upstream master`, `run-me-first.bat` |
 | `grunt scratch` | `webutil.bat stop`, `svcutil.bat u`, `RD "%project%" /S /Q`, `git clone, run-me-first.bat` |
 
 
