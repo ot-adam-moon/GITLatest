@@ -88,12 +88,11 @@ module.exports = (grunt) ->
     )
     cmdProcess.stdout.on "data", (data) ->
       msg = "" + data
-      console.log(grunt.verbose)
       grunt.log.write msg + '\n-----------------------------------\n'
 
-    cmdProcess.stderr.on "data", (data) ->
-      msg = "" + data
-      grunt.log.write msg
+#    cmdProcess.stderr.on "data", (data) ->
+#      msg = "" + data
+#      grunt.log.write msg
 
     cmdProcess.on "exit", (code) ->
       msg = script + " "
