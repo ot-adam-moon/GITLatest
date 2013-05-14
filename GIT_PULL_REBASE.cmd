@@ -1,6 +1,7 @@
 @ECHO OFF
-set arg1=%1
-PUSHD "%~dp0..\%arg1%"
+set project=%1
+set branch=%2
+PUSHD "%~dp0..\%project%"
 git submodule update
-git pr
+git pr upstream %branch%
 POPD

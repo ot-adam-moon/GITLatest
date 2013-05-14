@@ -1,88 +1,111 @@
 module.exports = (grunt) ->
   projects = ['ProductFulfillment','EnterpriseServices','WebClients','CustomerFiltering','SpendOnLife','OneTechnologies.Framework']
+  projectsDB = ['ProductFulfillment','WebClients','CustomerFiltering','SpendOnLife','OneTechnologies.Framework']
+  projRef = { 'pf': 'ProductFulfillment', 'es' : 'EnterpriseServices' , 'wc' : 'WebClients', 'cf': 'CustomerFiltering','spl': 'SpendOnLife', 'otf':'OneTechnologies.Framework'}
   async = require("async")
   spawn = require('child_process').spawn
   growl = require('growl')
 
+  proj = ""
+  unless typeof (projRef[grunt.option('proj')]) is "undefined"
+    proj = projRef[grunt.option('proj')]
+  else
+    proj = grunt.option('proj')
+
+  br = grunt.option('br')
 
   # Configure Grunt
   grunt.initConfig
 
 # Make task shortcuts
-  grunt.registerTask 'scratch', ['webstop','svcu','del','clone','rmf']
+  grunt.registerTask 'scratch', ['webstop','svcu','del','clone','rmf','es']
   grunt.registerTask 'default', ['st']
-  grunt.registerTask 'sanity', ['pum','su','st','rmf']
+  grunt.registerTask 'sanity', ['pum','rmf','es']
   grunt.registerTask 'up', ['web','svc']
 
-  grunt.registerTask 'db', 'REBUILD-DB', (project) ->
-    run 'REBUILD_DB.cmd', project, this.async()
-  grunt.registerTask 'certs', 'INSTALL CERTIFICATES', (project) ->
-    run 'INSTALL_CERTS.cmd', project, this.async()
-  grunt.registerTask 'svcu','Services Uninstall', (project) ->
-    run 'SVC_UNINSTALL.cmd', project, this.async()
-  grunt.registerTask 'svci', 'Services Install', (project) ->
-    run 'SVC_INSTALL.cmd', project, this.async()
-  grunt.registerTask 'web', (project) ->
-    run 'WEBUTIL.cmd ', project, this.async()
-  grunt.registerTask 'webstop', (project) ->
-    run 'WEBUTIL_STOP.cmd ', project, this.async()
-  grunt.registerTask 'del', (project) ->
-    run 'DELETE_ALL.cmd ', project, this.async()
-  grunt.registerTask 'svc', (project) ->
-    run 'SVCUTIL.cmd', project, this.async()
-  grunt.registerTask 'com', (project) ->
-    run 'GIT_CHECKOUT_MASTER.cmd', project, this.async()
-  grunt.registerTask 'clone', 'GIT CLONE', (project) ->
-    run 'GIT_CLONE.cmd', project, this.async()
-  grunt.registerTask 'cob', (project, branch) ->
-    run 'GIT_CHECKOUT_BRANCH.cmd', project, this.async(), branch
-  grunt.registerTask 'pum', (project) ->
-    run 'GIT_PULL_UPSTREAM_MASTER.cmd', project, this.async()
-  grunt.registerTask 'st', (project) ->
-    run 'GIT_STATUS.cmd ', project, this.async()
-  grunt.registerTask 'su', (project) ->
-    run 'GIT_SUBMODULE_UPDATE.cmd', project, this.async()
-  grunt.registerTask 'rh', (project) ->
-    run 'GIT_RESET_HARD.cmd', project, this.async()
-  grunt.registerTask 'rmf', (project) ->
-    run 'RUN_ME_FIRST.cmd', project, this.async()
-  grunt.registerTask 'rb', (project) ->
-    run 'RAKE_BOOTSTRAP.cmd', project, this.async()
-  grunt.registerTask 'rsql', (project) ->
-    run 'RAKE_SQL.cmd', project, this.async()
 
-  setupWork = (script, project, cb, arg2) ->
+  grunt.registerTask 'db', 'REBUILD-DB', () ->
+    run 'REBUILD_DB.cmd', this.async()
+  grunt.registerTask 'rc', 'REBUILD-DB', () ->
+      run 'REBUILD_CONFIG.cmd', this.async()
+  grunt.registerTask 'certs', 'INSTALL CERTIFICATES', () ->
+    run 'INSTALL_CERTS.cmd',this.async()
+  grunt.registerTask 'svcu','Services Uninstall', () ->
+    run 'SVC_UNINSTALL.cmd',this.async()
+  grunt.registerTask 'svci', 'Services Install', () ->
+    run 'SVC_INSTALL.cmd',this.async()
+  grunt.registerTask 'web', () ->
+    run 'WEBUTIL.cmd ',this.async()
+  grunt.registerTask 'webstop', () ->
+    run 'WEBUTIL_STOP.cmd ',this.async()
+  grunt.registerTask 'del', () ->
+    run 'DELETE_ALL.cmd ',this.async()
+  grunt.registerTask 'svc', () ->
+    run 'SVCUTIL.cmd',this.async()
+  grunt.registerTask 'com', () ->
+    run 'GIT_CHECKOUT_MASTER.cmd',this.async()
+  grunt.registerTask 'clone', 'GIT CLONE', () ->
+    run 'GIT_CLONE.cmd',this.async()
+  grunt.registerTask 'cob', () ->
+    run 'GIT_CHECKOUT_BRANCH.cmd',this.async()
+  grunt.registerTask 'pum', () ->
+    run 'GIT_PULL_UPSTREAM_MASTER.cmd',this.async()
+  grunt.registerTask 'pr', () ->
+    run 'GIT_PULL_REBASE.cmd',this.async()
+  grunt.registerTask 'st', () ->
+    run 'GIT_STATUS.cmd ',this.async()
+  grunt.registerTask 'su', () ->
+    run 'GIT_SUBMODULE_UPDATE.cmd',this.async()
+  grunt.registerTask 'rh', () ->
+    run 'GIT_RESET_HARD.cmd',this.async()
+  grunt.registerTask 'rmf', () ->
+    run 'RUN_ME_FIRST.cmd',this.async()
+  grunt.registerTask 'rb', () ->
+    run 'RAKE_BOOTSTRAP.cmd',this.async()
+  grunt.registerTask 'rsql', () ->
+    run 'RAKE_SQL.cmd',this.async()
+  grunt.registerTask 'es', "runmefirst for EnterpriseServices", () ->
+    proj = 'EnterpriseServices'
+    grunt.task.run "rmf"
+
+  setupWork = (script, cb, branch) ->
     workList = []
     i = 0
-    unless typeof (project) is "undefined"
-      workList.push async.apply(cmd, script, project ,cb, arg2)
-    while i < projects.length
-      workList.push async.apply(cmd, script, projects[i], cb, arg2)
-      i++
+    unless script is "RUN_ME_FIRST.cmd" or script is "REBUILD_DB.cmd"
+      while i < projects.length
+        workList.push async.apply(cmd, script, projects[i], cb, branch)
+        i++
+    else
+      while i < projectsDB.length
+        workList.push async.apply(cmd, script, projectsDB[i], cb, branch)
+        i++
     workList
 
-  run = (script, project, cb, arg2) ->
+  run = (script, cb) ->
     projCount = projects.length
     cnt = 0
-    startTime = new Date()
+    startTime = Date.now()
     callback = (err, results) ->
               cnt = cnt + 1
               if cnt == projCount
-                endTime = new Date()
-                console.log script + ' COMPLETE for all projects in : ' + ((endTime-startTime)/1000).toFixed(2) + ' seconds'
+                endTime = Date.now()
+                console.log script + ' COMPLETED for all projects in : ' + ((endTime-startTime)/1000).toFixed(3).toString() + ' seconds'
                 cb()
-    unless typeof (project) is "undefined"
-      cmd script, project, callback, arg2
+    unless typeof (proj) is "undefined"
+      cmd script, proj, callback, br
     else
-      workList = setupWork(script, project, callback, arg2)
+      workList = setupWork(script, callback)
       async.parallel workList,
         callback
 
-  cmd = (script, project, callback, arg2) ->
-    console.log (script + " " + project)
+  cmd = (script, project, callback, branch) ->
+    unless typeof (branch) is "undefined"
+      console.log (script + " " + project + " " + branch)
+    else
+      console.log (script + " " + project)
     args = [project]
-    unless typeof (arg2) is "undefined"
-      args.push arg2
+    unless typeof (branch) is "undefined"
+      args.push branch
 
     cmdProcess = spawn(script, args, () ->
     )
@@ -90,9 +113,9 @@ module.exports = (grunt) ->
       msg = "" + data
       grunt.log.write msg + '\n-----------------------------------\n'
 
-#    cmdProcess.stderr.on "data", (data) ->
-#      msg = "" + data
-#      grunt.log.write msg
+    cmdProcess.stderr.on "data", (data) ->
+      msg = "" + data
+      grunt.log.write msg
 
     cmdProcess.on "exit", (code) ->
       msg = script + " "
