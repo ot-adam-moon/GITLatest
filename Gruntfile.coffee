@@ -26,7 +26,7 @@ module.exports = (grunt) ->
 
   grunt.registerTask 'db', 'REBUILD-DB', () ->
     run 'REBUILD_DB.cmd', this.async()
-  grunt.registerTask 'rc', 'REBUILD-DB', () ->
+  grunt.registerTask 'rc', 'REBUILD-CONFIG', () ->
       run 'REBUILD_CONFIG.cmd', this.async()
   grunt.registerTask 'certs', 'INSTALL CERTIFICATES', () ->
     run 'INSTALL_CERTS.cmd',this.async()
@@ -34,37 +34,41 @@ module.exports = (grunt) ->
     run 'SVC_UNINSTALL.cmd',this.async()
   grunt.registerTask 'svci', 'Services Install', () ->
     run 'SVC_INSTALL.cmd',this.async()
-  grunt.registerTask 'web', () ->
+  grunt.registerTask 'web','WebUtil All', () ->
     run 'WEBUTIL.cmd ',this.async()
-  grunt.registerTask 'webstop', () ->
+  grunt.registerTask 'webstop', 'WebUtil Stop',() ->
     run 'WEBUTIL_STOP.cmd ',this.async()
   grunt.registerTask 'del', () ->
     run 'DELETE_ALL.cmd ',this.async()
-  grunt.registerTask 'svc', () ->
+  grunt.registerTask 'svc', 'SvcUtil Start', () ->
     run 'SVCUTIL.cmd',this.async()
-  grunt.registerTask 'com', () ->
+  grunt.registerTask 'com', 'GIT CHECKOUT MASTER', () ->
     run 'GIT_CHECKOUT_MASTER.cmd',this.async()
   grunt.registerTask 'clone', 'GIT CLONE', () ->
     run 'GIT_CLONE.cmd',this.async()
-  grunt.registerTask 'cob', () ->
+  grunt.registerTask 'cob', 'GIT CHECKOUT --br [branchname]', () ->
     run 'GIT_CHECKOUT_BRANCH.cmd',this.async()
-  grunt.registerTask 'pum', () ->
+  grunt.registerTask 'ctb', 'GIT FETCH,GIT CHECKOUT -t [branchname]', () ->
+    run 'GIT_CHECKOUT_BRANCH.cmd',this.async()
+  grunt.registerTask 'pum', 'GIT PULL UPSTREAM MASTER',() ->
     run 'GIT_PULL_UPSTREAM_MASTER.cmd',this.async()
-  grunt.registerTask 'pr', () ->
+  grunt.registerTask 'pub', 'GIT PULL UPSTREAM [BRANCH]',() ->
+     run 'GIT_PULL_UPSTREAM_BRANCH.cmd',this.async()
+  grunt.registerTask 'pr', 'GIT PULL REBASE', () ->
     run 'GIT_PULL_REBASE.cmd',this.async()
-  grunt.registerTask 'st', () ->
+  grunt.registerTask 'st', 'GIT STATUS', () ->
     run 'GIT_STATUS.cmd ',this.async()
-  grunt.registerTask 'su', () ->
+  grunt.registerTask 'su', 'GIT SUBMODULE UPDATE',() ->
     run 'GIT_SUBMODULE_UPDATE.cmd',this.async()
-  grunt.registerTask 'rh', () ->
+  grunt.registerTask 'rh', 'GIT RESET --HARD', () ->
     run 'GIT_RESET_HARD.cmd',this.async()
-  grunt.registerTask 'rmf', () ->
+  grunt.registerTask 'rmf', 'RUN_ME_FIRST.BAT',() ->
     run 'RUN_ME_FIRST.cmd',this.async()
-  grunt.registerTask 'rb', () ->
+  grunt.registerTask 'rb', 'RAKE BOOTSTRAP',() ->
     run 'RAKE_BOOTSTRAP.cmd',this.async()
-  grunt.registerTask 'rsql', () ->
+  grunt.registerTask 'rsql', 'RAKE SQL', () ->
     run 'RAKE_SQL.cmd',this.async()
-  grunt.registerTask 'es', "runmefirst for EnterpriseServices", () ->
+  grunt.registerTask 'es', "RUN ME FIRST for EnterpriseServices", () ->
     proj = 'EnterpriseServices'
     grunt.task.run "rmf"
 

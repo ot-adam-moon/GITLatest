@@ -1,5 +1,5 @@
 @ECHO OFF
-set arg1=%1
-PUSHD "%~dp0..\%arg1%"
-git co master
+set project=%1
+PUSHD "%~dp0..\%project%"
+git checkout master
 POPD
