@@ -30,6 +30,32 @@ How do I control the project list?
 * 2nd line <code>projects = [...]</code>
 * edit array to control the Project List
 
+How do I run a task for all projects and current branch?
+========================================================
+
+* grunt {task}
+
+How do I run a task for a particular project and current branch?
+================================================================
+
+* grunt {task} --proj {projectName}
+
+How do I run a task for a all projects but for a particular branch?
+===================================================================
+
+* grunt {task} --br ReleaseXXXXX
+
+How do I run a task for a particular project and particular branch?
+===================================================================
+
+* grunt {task} --proj {projectName} --br ReleaseXXXXX
+
+
+Rebooted my box and I wanted everything started up / I want to make sure everything is up
+=========================================================================================
+* cd Projects\GITLatest
+* grunt up
+
 Build Projects from Scratch
 ===========================
 
@@ -61,17 +87,21 @@ Command List
 | `grunt default` | `git status` |
 | `grunt st` | `git status` |
 | `grunt pum` | `git submodule update`, `git pull upstream master` |
+| `grunt pub --br {branchname}` | `git submodule update`, `git pull upstream master`,`git pull upstream {branchname
 | `grunt pr` | `git submodule update`, `git pull rebase` |
-| `grunt cert` | `installs necessary certs with INSTALL_CERTS.cmd` |
+| `grunt certs` | `installs necessary certs with INSTALL_CERTS.cmd` |
 | `grunt clone` | `git clone` |
 | `grunt clean` | `git clean` |
 | `grunt com` | `git checkout master` |
+| `grunt cob --br {branchname}` | `git checkout --br [branchname]` |
+| `grunt ctb --br {branchname}` | `git fetch, git checkout -t {branchname}` |
 | `grunt su` | `git submodule update` |
 | `grunt rh` | `git reset head --hard` |
 | `grunt rmf` | `run-me-first.bat` |
 | `grunt rboot` | `rake bootstrap` |
 | `grunt rsql` | `rake sql` |
 | `grunt db` | `rebuild-db.bat` |
+| `grunt rc` | `rebuild-config.bat` |
 | `grunt web` | `webutil.bat all` |
 | `grunt webstop` | `webutil.bat stop` |
 | `grunt svc` | `svcutil.bat start` |
