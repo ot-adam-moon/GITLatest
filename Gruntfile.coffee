@@ -1,6 +1,6 @@
 module.exports = (grunt) ->
   projects = ['ProductFulfillment','EnterpriseServices','WebClients','CustomerFiltering','SpendOnLife','OneTechnologies.Framework']
-  projectsDB = ['ProductFulfillment','WebClients','CustomerFiltering','SpendOnLife','OneTechnologies.Framework']
+  projectsDB = ['EnterpriseServices','WebClients','CustomerFiltering','SpendOnLife','OneTechnologies.Framework']
   projRef = { 'pf': 'ProductFulfillment', 'es' : 'EnterpriseServices' , 'wc' : 'WebClients', 'cf': 'CustomerFiltering','spl': 'SpendOnLife', 'otf':'OneTechnologies.Framework'}
   async = require("async")
   spawn = require('child_process').spawn
@@ -18,9 +18,11 @@ module.exports = (grunt) ->
   grunt.initConfig
 
 # Make task shortcuts
-  grunt.registerTask 'scratch', ['webstop','svcu','del','clone','rmf','es']
-  grunt.registerTask 'default', ['st']
-  grunt.registerTask 'sanity', ['pum','rmf','es']
+  grunt.registerTask 'scratch', ['webstop','svcu','del','clone','rmf','pf']
+  grunt.registerTask 'default', ['pum']
+  grunt.registerTask 'sanity', ['pum','rmf','pf']
+  grunt.registerTask 'refreshRMF', ['pum','pr','rmf']
+  grunt.registerTask 'refreshRake', ['pum','pr','rb']
   grunt.registerTask 'up', ['web','svc']
 
 
@@ -70,9 +72,21 @@ module.exports = (grunt) ->
      run 'GIT_GUI.cmd',this.async()
   grunt.registerTask 'rsql', 'RAKE SQL', () ->
     run 'RAKE_SQL.cmd',this.async()
-  grunt.registerTask 'es', "RUN ME FIRST for EnterpriseServices", () ->
-    proj = 'EnterpriseServices'
-    grunt.task.run "rmf"
+  grunt.registerTask 'pf', "GIT PULL UPSTREAM MASTER, GIT PULL --REBASE, RUN ME FIRST for ProductFulfillment", () ->
+    proj = 'pf'
+    grunt.task.run "refreshRMF"
+  grunt.registerTask 'es', "GIT PULL UPSTREAM MASTER, GIT PULL --REBASE, RUN ME FIRST for EnterpriseServices", () ->
+    proj = 'es'
+    grunt.task.run "refreshRMF"
+  grunt.registerTask 'spl', "GIT PULL UPSTREAM MASTER, GIT PULL --REBASE, RUN ME FIRST for SpendOnLife", () ->
+    proj = 'spl'
+    grunt.task.run "refreshRMF"
+  grunt.registerTask 'wc', "GIT PULL UPSTREAM MASTER, GIT PULL --REBASE, RUN ME FIRST for WebClients", () ->
+    proj = 'wc'
+    grunt.task.run "refreshRake"
+  grunt.registerTask 'cf', "GIT PULL UPSTREAM MASTER, GIT PULL --REBASE, RUN ME FIRST for CustomerFilitering", () ->
+    proj = 'cf'
+    grunt.task.run "refreshRake"
 
   setupWork = (script, cb, branch) ->
     workList = []
@@ -119,7 +133,7 @@ module.exports = (grunt) ->
       msg = "" + data
       grunt.log.write msg + '\n-----------------------------------\n'
 
-    cmdProcess.stderr.on "data", (data) ->
+    cmdProcess.stderr.on "error", (data) ->
       msg = "" + data
       grunt.log.write msg
 
