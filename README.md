@@ -33,22 +33,22 @@ How do I control the project list?
 Run a task for all projects and current branch
 ----------------------------------------------
 
-* grunt {task}
+ grunt {task}
 
 Run a task for one project and current branch
 ---------------------------------------------
 
-* grunt {task} --proj {projectName}
+ grunt {task} --proj {projectName}
 
 Run a task for all projects but for custom branch
 -------------------------------------------------
 
-* grunt {task} --br ReleaseXXXXX
+ grunt {task} --br ReleaseXXXXX
 
 Run a task for one project and custom branch
 --------------------------------------------
 
-* grunt {task} --proj {projectName} --br ReleaseXXXXX
+ grunt {task} --proj {projectName} --br ReleaseXXXXX
 
 
 Rebooted my box and want everything started up
