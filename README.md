@@ -30,23 +30,23 @@ How do I control the project list?
 * 2nd line <code>projects = [...]</code>
 * edit array to control the Project List
 
-run a task for all projects and current branch
+Eun a task for all projects and current branch
 ==============================================
 
 * grunt {task}
 
-run a task for a particular project and current branch
-======================================================
+Eun a task for one project and current branch
+=============================================
 
 * grunt {task} --proj {projectName}
 
-run a task for a all projects but for a particular branch
-=========================================================
+Eun a task for all projects but for custom branch
+=================================================
 
 * grunt {task} --br ReleaseXXXXX
 
-run a task for a particular project and particular branch
-=========================================================
+Run a task for one project and custom branch
+============================================
 
 * grunt {task} --proj {projectName} --br ReleaseXXXXX
 
@@ -87,7 +87,7 @@ Command List
 | `grunt default` | `git status` |
 | `grunt st` | `git status` |
 | `grunt pum` | `git submodule update`, `git pull upstream master` |
-| `grunt pub --br {branchname}` | `git submodule update`, `git pull upstream master`,`git pull upstream {branchname`
+| `grunt pub --br {branchname}` | `git submodule update`, `git pull upstream master`,`git pull upstream {branchname}`
 | `grunt pr` | `git submodule update`, `git pull rebase` |
 | `grunt certs` | `installs necessary certs with INSTALL_CERTS.cmd` |
 | `grunt clone` | `git clone` |
