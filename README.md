@@ -24,40 +24,40 @@ Setup
 * `grunt`  *NOTE: this will run `git status` for all projects
 
 How do I control the project list?
-==================================
+----------------------------------
 
 * Open gruntfile.coffee
 * 2nd line <code>projects = [...]</code>
 * edit array to control the Project List
 
 Run a task for all projects and current branch
-==============================================
+----------------------------------------------
 
 * grunt {task}
 
 Run a task for one project and current branch
-=============================================
+---------------------------------------------
 
 * grunt {task} --proj {projectName}
 
 Run a task for all projects but for custom branch
-=================================================
+-------------------------------------------------
 
 * grunt {task} --br ReleaseXXXXX
 
 Run a task for one project and custom branch
-============================================
+--------------------------------------------
 
 * grunt {task} --proj {projectName} --br ReleaseXXXXX
 
 
 Rebooted my box and want everything started up
-==============================================
+----------------------------------------------
 * cd Projects\GITLatest
 * grunt up
 
 Build Projects from Scratch
-===========================
+---------------------------
 
 * create a new directory where you want all projects to be under
 * <code>cd directoryYouChose</code>
@@ -71,7 +71,7 @@ What does this do?
  * runs run_me_first.bat for each project
 
 What if I only want to run a command for one project?
-=====================================================
+-----------------------------------------------------
 
 add an argument to your command indicating the project you want
 
@@ -79,7 +79,7 @@ Ex: <code>grunt scratch:ProjectName</code>
     <code>grunt st:ProjectName</code>
  
 Command List
-============
+------------
 
 | grunt command | what it does  |
 | ------------- |:-------------:|
