@@ -30,17 +30,17 @@ How do I control the project list?
 * 2nd line <code>projects = [...]</code>
 * edit array to control the Project List
 
-Eun a task for all projects and current branch
+Run a task for all projects and current branch
 ==============================================
 
 * grunt {task}
 
-Eun a task for one project and current branch
+Run a task for one project and current branch
 =============================================
 
 * grunt {task} --proj {projectName}
 
-Eun a task for all projects but for custom branch
+Run a task for all projects but for custom branch
 =================================================
 
 * grunt {task} --br ReleaseXXXXX
