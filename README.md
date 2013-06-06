@@ -5,12 +5,12 @@ Using Node.js async to Run in Parallel All Necessary GIT/System Bootstrap Comman
 
 Motivation
 ==========
-  *  I want to setup a box for development from scratch with one script
-  *  I want to <code>git pull upstream master</code> or <code>git pull rebase</code> without having 5 Powershell or GIT Bash windows open.
-  *  I want the command to run against all necessary projects in parallel
-  *  I want the flexibility to run cmd for one project or for all projects
-  *  I want a quick way to run <code>rake bootstrap</code> for all projects in parallel
-  *  I don't want to be afraid to reboot my box anymore fearing things won't work.
+  *  setup a box for development from scratch with one script
+  *  <code>git pull upstream master</code> or <code>git pull rebase</code> without having 5 Powershell or GIT Bash windows open.
+  *  command to run against all necessary projects in parallel
+  *  flexibility to run cmd for one project or for all projects
+  *  a quick way to run <code>rake bootstrap</code> for all projects in parallel
+  *  don't want to be afraid to reboot my box anymore fearing things won't work.
 
 Setup
 =====
@@ -30,29 +30,29 @@ How do I control the project list?
 * 2nd line <code>projects = [...]</code>
 * edit array to control the Project List
 
-How do I run a task for all projects and current branch?
-========================================================
+run a task for all projects and current branch
+==============================================
 
 * grunt {task}
 
-How do I run a task for a particular project and current branch?
-================================================================
+run a task for a particular project and current branch
+======================================================
 
 * grunt {task} --proj {projectName}
 
-How do I run a task for a all projects but for a particular branch?
-===================================================================
+run a task for a all projects but for a particular branch
+=========================================================
 
 * grunt {task} --br ReleaseXXXXX
 
-How do I run a task for a particular project and particular branch?
-===================================================================
+run a task for a particular project and particular branch
+=========================================================
 
 * grunt {task} --proj {projectName} --br ReleaseXXXXX
 
 
-Rebooted my box and I wanted everything started up / I want to make sure everything is up
-=========================================================================================
+Rebooted my box and want everything started up
+==============================================
 * cd Projects\GITLatest
 * grunt up
 
@@ -87,7 +87,7 @@ Command List
 | `grunt default` | `git status` |
 | `grunt st` | `git status` |
 | `grunt pum` | `git submodule update`, `git pull upstream master` |
-| `grunt pub --br {branchname}` | `git submodule update`, `git pull upstream master`,`git pull upstream {branchname
+| `grunt pub --br {branchname}` | `git submodule update`, `git pull upstream master`,`git pull upstream {branchname`
 | `grunt pr` | `git submodule update`, `git pull rebase` |
 | `grunt certs` | `installs necessary certs with INSTALL_CERTS.cmd` |
 | `grunt clone` | `git clone` |
