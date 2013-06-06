@@ -66,6 +66,8 @@ module.exports = (grunt) ->
     run 'RUN_ME_FIRST.cmd',this.async()
   grunt.registerTask 'rb', 'RAKE BOOTSTRAP',() ->
     run 'RAKE_BOOTSTRAP.cmd',this.async()
+  grunt.registerTask 'gui', 'GIT GUI',() ->
+     run 'GIT_GUI.cmd',this.async()
   grunt.registerTask 'rsql', 'RAKE SQL', () ->
     run 'RAKE_SQL.cmd',this.async()
   grunt.registerTask 'es', "RUN ME FIRST for EnterpriseServices", () ->
