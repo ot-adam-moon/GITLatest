@@ -17,19 +17,10 @@ module.exports = (grunt) ->
   # Configure Grunt
   grunt.initConfig
 
-# Make task shortcuts
-  grunt.registerTask 'scratch', ['webstop','svcu','del','clone','rmf','pf']
-  grunt.registerTask 'default', ['pum']
-  grunt.registerTask 'sanity', ['pum','rmf','pf']
-  grunt.registerTask 'refreshRMF', ['pum','pr','rmf']
-  grunt.registerTask 'refreshRake', ['pum','pr','rb']
-  grunt.registerTask 'up', ['web','svc']
-
-
   grunt.registerTask 'db', 'REBUILD-DB', () ->
     run 'REBUILD_DB.cmd', this.async()
   grunt.registerTask 'rc', 'REBUILD-CONFIG', () ->
-      run 'REBUILD_CONFIG.cmd', this.async()
+    run 'REBUILD_CONFIG.cmd', this.async()
   grunt.registerTask 'certs', 'INSTALL CERTIFICATES', () ->
     run 'INSTALL_CERTS.cmd',this.async()
   grunt.registerTask 'svcu','Services Uninstall', () ->
@@ -51,42 +42,59 @@ module.exports = (grunt) ->
   grunt.registerTask 'cob', 'GIT CHECKOUT --br [branchname]', () ->
     run 'GIT_CHECKOUT_BRANCH.cmd',this.async()
   grunt.registerTask 'ctb', 'GIT FETCH,GIT CHECKOUT -t [branchname]', () ->
-    run 'GIT_CHECKOUT_BRANCH.cmd',this.async()
+    run 'GIT_CREATE_TRACKING_BRANCH.cmd',this.async()
   grunt.registerTask 'pum', 'GIT PULL UPSTREAM MASTER',() ->
     run 'GIT_PULL_UPSTREAM_MASTER.cmd',this.async()
   grunt.registerTask 'pub', 'GIT PULL UPSTREAM [BRANCH]',() ->
-     run 'GIT_PULL_UPSTREAM_BRANCH.cmd',this.async()
+    run 'GIT_PULL_UPSTREAM_BRANCH.cmd',this.async()
   grunt.registerTask 'pr', 'GIT PULL REBASE', () ->
     run 'GIT_PULL_REBASE.cmd',this.async()
   grunt.registerTask 'st', 'GIT STATUS', () ->
     run 'GIT_STATUS.cmd ',this.async()
   grunt.registerTask 'su', 'GIT SUBMODULE UPDATE',() ->
     run 'GIT_SUBMODULE_UPDATE.cmd',this.async()
-  grunt.registerTask 'rh', 'GIT RESET --HARD', () ->
+  grunt.registerTask 'rh', 'GIT RESET HEAD --HARD', () ->
     run 'GIT_RESET_HARD.cmd',this.async()
   grunt.registerTask 'rmf', 'RUN_ME_FIRST.BAT',() ->
     run 'RUN_ME_FIRST.cmd',this.async()
   grunt.registerTask 'rb', 'RAKE BOOTSTRAP',() ->
     run 'RAKE_BOOTSTRAP.cmd',this.async()
   grunt.registerTask 'gui', 'GIT GUI',() ->
-     run 'GIT_GUI.cmd',this.async()
+    run 'GIT_GUI.cmd',this.async()
   grunt.registerTask 'rsql', 'RAKE SQL', () ->
     run 'RAKE_SQL.cmd',this.async()
+  grunt.registerTask 'stash', 'RAKE SQL', () ->
+    run 'GIT_STASH.cmd',this.async()
+  grunt.registerTask 'stashpop', 'RAKE SQL', () ->
+    run 'GIT_STASH_POP.cmd',this.async()
   grunt.registerTask 'pf', "GIT PULL UPSTREAM MASTER, GIT PULL --REBASE, RUN ME FIRST for ProductFulfillment", () ->
-    proj = 'pf'
-    grunt.task.run "refreshRMF"
+    proj = 'ProductFulfillment'
+    grunt.task.run('r')
   grunt.registerTask 'es', "GIT PULL UPSTREAM MASTER, GIT PULL --REBASE, RUN ME FIRST for EnterpriseServices", () ->
-    proj = 'es'
-    grunt.task.run "refreshRMF"
+    proj = 'EnterpriseServices'
+    grunt.task.run('r')
   grunt.registerTask 'spl', "GIT PULL UPSTREAM MASTER, GIT PULL --REBASE, RUN ME FIRST for SpendOnLife", () ->
-    proj = 'spl'
-    grunt.task.run "refreshRMF"
+    proj = 'SpendOnLife'
+    run 'GIT_PULL_UPSTREAM_MASTER.cmd',this.async()
+    run 'GIT_PULL_REBASE.cmd',this.async()
+    run 'RUN_ME_FIRST.cmd',this.async()
   grunt.registerTask 'wc', "GIT PULL UPSTREAM MASTER, GIT PULL --REBASE, RUN ME FIRST for WebClients", () ->
-    proj = 'wc'
-    grunt.task.run "refreshRake"
+    proj = 'WebClients'
+    run 'GIT_PULL_UPSTREAM_MASTER.cmd',this.async()
+    run 'GIT_PULL_REBASE.cmd',this.async()
+    run 'RUN_ME_FIRST.cmd',this.async()
   grunt.registerTask 'cf', "GIT PULL UPSTREAM MASTER, GIT PULL --REBASE, RUN ME FIRST for CustomerFilitering", () ->
-    proj = 'cf'
-    grunt.task.run "refreshRake"
+    proj = 'CreditFulfillment'
+    run 'GIT_PULL_UPSTREAM_MASTER.cmd',this.async()
+    run 'GIT_PULL_REBASE.cmd',this.async()
+    run 'RUN_ME_FIRST.cmd',this.async()
+
+  # Make task shortcuts
+  grunt.registerTask 'scratch', ['webstop','svcu','del','clone','rmf','pf']
+  grunt.registerTask 'default', ['pum']
+  grunt.registerTask 'fr', ['pum','pr','rmf','pf']
+  grunt.registerTask 'r', ['stash','pum','pr','rmf','stashpop']
+  grunt.registerTask 'up', ['web','svc']
 
   setupWork = (script, cb, branch) ->
     workList = []
