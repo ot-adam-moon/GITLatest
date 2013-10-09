@@ -1,7 +1,7 @@
 module.exports = (grunt) ->
-  projects = ['ProductFulfillment','EnterpriseServices','WebClients','CustomerFiltering','SpendOnLife','OneTechnologies.Framework']
+  projects = ['ProductFulfillment','EnterpriseServices','WebClients','CustomerFiltering','SpendOnLife','OneTechnologies.Framework','AffiliateManager', 'ProductCatalog']
   projectsDB = ['EnterpriseServices','WebClients','CustomerFiltering','SpendOnLife','OneTechnologies.Framework']
-  projRef = { 'pf': 'ProductFulfillment', 'es' : 'EnterpriseServices' , 'wc' : 'WebClients', 'cf': 'CustomerFiltering','spl': 'SpendOnLife', 'otf':'OneTechnologies.Framework'}
+  projRef = { 'pf': 'ProductFulfillment', 'es' : 'EnterpriseServices' , 'wc' : 'WebClients', 'cf': 'CustomerFiltering','spl': 'SpendOnLife', 'otf':'OneTechnologies.Framework','am': 'AffiliateManager','pc': 'ProductCatalog'}
   async = require("async")
   spawn = require('child_process').spawn
   growl = require('growl')
@@ -45,8 +45,12 @@ module.exports = (grunt) ->
     run 'GIT_CREATE_TRACKING_BRANCH.cmd',this.async()
   grunt.registerTask 'pum', 'GIT PULL UPSTREAM MASTER',() ->
     run 'GIT_PULL_UPSTREAM_MASTER.cmd',this.async()
+  grunt.registerTask 'pom', 'GIT PULL ORIGIN MASTER',() ->
+     run 'GIT_PULL_ORIGIN_MASTER.cmd',this.async()
   grunt.registerTask 'pub', 'GIT PULL UPSTREAM [BRANCH]',() ->
     run 'GIT_PULL_UPSTREAM_BRANCH.cmd',this.async()
+  grunt.registerTask 'pr', 'GIT PULL', () ->
+     run 'GIT_PULL.cmd',this.async()
   grunt.registerTask 'pr', 'GIT PULL REBASE', () ->
     run 'GIT_PULL_REBASE.cmd',this.async()
   grunt.registerTask 'st', 'GIT STATUS', () ->
