@@ -49,7 +49,7 @@ module.exports = (grunt) ->
      run 'GIT_PULL_ORIGIN_MASTER.cmd',this.async()
   grunt.registerTask 'pub', 'GIT PULL UPSTREAM [BRANCH]',() ->
     run 'GIT_PULL_UPSTREAM_BRANCH.cmd',this.async()
-  grunt.registerTask 'pr', 'GIT PULL', () ->
+  grunt.registerTask 'pull', 'GIT PULL', () ->
      run 'GIT_PULL.cmd',this.async()
   grunt.registerTask 'pr', 'GIT PULL REBASE', () ->
     run 'GIT_PULL_REBASE.cmd',this.async()
