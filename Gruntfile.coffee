@@ -70,9 +70,9 @@ module.exports = (grunt) ->
   grunt.registerTask 'resethard', 'GIT RESET HEAD --HARD', () ->
     run 'GIT_RESET_HARD.cmd',this.async(), config.allProjects
   grunt.registerTask 'rmf', 'RUN_ME_FIRST.BAT',() ->
-    run 'RUN_ME_FIRST.cmd',this.async(), config.allProjects
+    run 'RUN_ME_FIRST.cmd',this.async(), config.parallelProjects
   grunt.registerTask 'rb', 'RAKE BOOTSTRAP',() ->
-    run 'RAKE_BOOTSTRAP.cmd',this.async(), config.allProjects
+    run 'RAKE_BOOTSTRAP.cmd',this.async(), config.parallelProjects
   grunt.registerTask 'rakebootstrap', 'RAKE BOOTSTRAP',() ->
     run 'RAKE_BOOTSTRAP.cmd',this.async(), config.allProjects
   grunt.registerTask 'gui', 'GIT GUI',() ->
@@ -87,11 +87,12 @@ module.exports = (grunt) ->
     run 'GIT_STASH_POP.cmd',this.async(), config.parallelProjects
   grunt.registerTask 'pf', "GIT PULL UPSTREAM MASTER, GIT PULL --REBASE, RUN ME FIRST for ProductFulfillment", () ->
     proj = 'ProductFulfillment'
-    grunt.task.run('r')
+    grunt.task.run('rb')
 
   # Make task shortcuts
   grunt.registerTask 'fromscratch', ['webstop','svcu','del','clone','rmf','pf']
   grunt.registerTask 'default', ['pum']
+  grunt.registerTask 'update', ['pum','rmf','pf']
   grunt.registerTask 'up', ['web','svc']
 
   setupWork = (script, cb, projList) ->
