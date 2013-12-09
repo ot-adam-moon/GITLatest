@@ -2,3 +2,5 @@
 Certutil.exe -addstore -user -f "My" "%~dp0..\Certs\ProdSupCA.cert"
 Certutil.exe -importPFX -f -p "H4ppyFunB4ll" "%~dp0..\Certs\tuiTestCert.pfx"
 Certutil.exe -importPFX -user -f -p "H4ppyFunB4ll" "%~dp0..\Certs\tuiTestCert.pfx"
+Certutil.exe -importPFX -f -p "uUbhHHvcXiyw" "%~dp0..\Certs\tui_CCS_EXP_08_02_2028.pfx"
+Certutil.exe -importPFX -user -f -p "uUbhHHvcXiyw" "%~dp0..\Certs\tui_CCS_EXP_08_02_2028.pfx"

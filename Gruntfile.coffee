@@ -27,7 +27,11 @@ module.exports = (grunt) ->
     run 'INSTALL_CERTS.cmd',this.async()
   grunt.registerTask 'svcu','Services Uninstall', () ->
     run 'SVC_UNINSTALL.cmd',this.async(), config.svcProjects
+  grunt.registerTask 'svcuninstall','Services Uninstall', () ->
+    run 'SVC_UNINSTALL.cmd',this.async(), config.svcProjects
   grunt.registerTask 'svci', 'Services Install', () ->
+    run 'SVC_INSTALL.cmd',this.async(), config.svcProjects
+  grunt.registerTask 'svcinstall', 'Services Install', () ->
     run 'SVC_INSTALL.cmd',this.async(), config.svcProjects
   grunt.registerTask 'web','WebUtil All', () ->
     run 'WEBUTIL.cmd ',this.async(), config.webProjects
@@ -47,12 +51,14 @@ module.exports = (grunt) ->
     run 'GIT_CREATE_TRACKING_BRANCH.cmd',this.async()
   grunt.registerTask 'pum', 'GIT PULL UPSTREAM MASTER',() ->
     run 'GIT_PULL_UPSTREAM_MASTER.cmd',this.async(), config.allProjects
+  grunt.registerTask 'pum', 'GIT PULL UPSTREAM MASTER',() ->
+    run 'GIT_PULL_UPSTREAM_MASTER.cmd',this.async(), config.allProjects
   grunt.registerTask 'pom', 'GIT PULL ORIGIN MASTER',() ->
-     run 'GIT_PULL_ORIGIN_MASTER.cmd',this.async(), config.allProjects
+    run 'GIT_PULL_ORIGIN_MASTER.cmd',this.async(), config.allProjects
   grunt.registerTask 'pub', 'GIT PULL UPSTREAM [BRANCH]',() ->
     run 'GIT_PULL_UPSTREAM_BRANCH.cmd',this.async(), config.allProjects
   grunt.registerTask 'pull', 'GIT PULL', () ->
-     run 'GIT_PULL.cmd',this.async(), config.allProjects
+    run 'GIT_PULL.cmd',this.async(), config.allProjects
   grunt.registerTask 'pr', 'GIT PULL REBASE', () ->
     run 'GIT_PULL_REBASE.cmd',this.async(), config.allProjects
   grunt.registerTask 'st', 'GIT STATUS', () ->
@@ -61,13 +67,19 @@ module.exports = (grunt) ->
     run 'GIT_SUBMODULE_UPDATE.cmd',this.async(), config.allProjects
   grunt.registerTask 'rh', 'GIT RESET HEAD --HARD', () ->
     run 'GIT_RESET_HARD.cmd',this.async(), config.allProjects
+  grunt.registerTask 'resethard', 'GIT RESET HEAD --HARD', () ->
+    run 'GIT_RESET_HARD.cmd',this.async(), config.allProjects
   grunt.registerTask 'rmf', 'RUN_ME_FIRST.BAT',() ->
     run 'RUN_ME_FIRST.cmd',this.async(), config.allProjects
   grunt.registerTask 'rb', 'RAKE BOOTSTRAP',() ->
     run 'RAKE_BOOTSTRAP.cmd',this.async(), config.allProjects
+  grunt.registerTask 'rakebootstrap', 'RAKE BOOTSTRAP',() ->
+    run 'RAKE_BOOTSTRAP.cmd',this.async(), config.allProjects
   grunt.registerTask 'gui', 'GIT GUI',() ->
     run 'GIT_GUI.cmd',this.async(), config.allProjects
   grunt.registerTask 'rsql', 'RAKE SQL', () ->
+    run 'RAKE_SQL.cmd',this.async(), config.parallelProjects
+  grunt.registerTask 'rakesql', 'RAKE SQL', () ->
     run 'RAKE_SQL.cmd',this.async(), config.parallelProjects
   grunt.registerTask 'stash', 'RAKE SQL', () ->
     run 'GIT_STASH.cmd',this.async(), config.parallelProjects
@@ -78,7 +90,7 @@ module.exports = (grunt) ->
     grunt.task.run('r')
 
   # Make task shortcuts
-  grunt.registerTask 'scratch', ['webstop','svcu','del','clone','rmf','pf']
+  grunt.registerTask 'fromscratch', ['webstop','svcu','del','clone','rmf','pf']
   grunt.registerTask 'default', ['pum']
   grunt.registerTask 'up', ['web','svc']
 
@@ -86,15 +98,18 @@ module.exports = (grunt) ->
     workList = []
     i = 0
 
-    while i < projList.length
-      workList.push async.apply(cmd, script, projList[i], cb)
-      i++
+    if projList
+      while i < projList.length
+        workList.push async.apply(cmd, script, projList[i], cb)
+        i++
+    else
+      workList.push async.apply(cmd, script, undefined, cb)
+
     workList
 
   run = (script, cb, projList) ->
     projCount = 0
 
-    console.log projList
     if projList
       projCount = projList.length
 
@@ -138,7 +153,7 @@ module.exports = (grunt) ->
 
     cmdProcess.on "exit", (code) ->
       msg = script + " "
-      msg = msg.replace(/\_/g, ' ').replace(/\.cmd/, '').toLowerCase() + project + ' COMPLETED\n-----------------------------------\n'
+      msg = msg.replace(/\_/g, ' ').replace(/\.cmd/, '').toLowerCase() +  if project then project else '' + ' COMPLETED\n-----------------------------------\n'
       grunt.log.write msg
       growlMsg(msg)
       callback(null, "")
