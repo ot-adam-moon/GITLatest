@@ -1,4 +1,3 @@
-
 OT Development Environment Setup
 ============================
 
@@ -36,17 +35,57 @@ GITLatest
 * `npm install`
 
 
-    https://github.com/dahlbyk/posh-git
+   starting from scratch
+   ---------------------
+   
+   `grunt fromscratch`
+   
+   
+Command List
+------------
 
+| grunt command | what it does  |
+| ------------- |:-------------:|
+| `grunt` | `git submodule update, git pull upstream master` |
+| `grunt default` | `git pull upstream master` |
+| `grunt st` | `git status` |
+| `grunt gui` | `git gui` |
+| `grunt pum` | `git submodule update`, `git pull upstream master` |
+| `grunt pom` | `git submodule update`, `git pull origin master` |
+| `grunt pom` | `git submodule update`, `git pull origin master` |
+| `grunt pub --br {branchname}` | `git submodule update`, `git pull upstream master`,`git pull upstream {branchname}`
+| `grunt pr` | `git submodule update`, `git pull rebase` |
+| `grunt clone` | `git clone` |
+| `grunt clean` | `git clean -f` |
+| `grunt com` | `git checkout master` |
+| `grunt cob --br {branchname}` | `git checkout --br [branchname]` |
+| `grunt ctb --br {branchname}` | `git fetch, git checkout -t {branchname}` |
+| `grunt su` | `git submodule update` |
+| `grunt stash` | `git stash` |
+| `grunt stashp` | `git stash pop` |
+| `grunt rh` | `git reset head --hard` |
+| `grunt rmf` | `run-me-first.bat` |
+| `grunt rb` | `rake bootstrap` |
+| `grunt rsql` | `rake sql` |
+| `grunt db` | `rebuild-db.bat` |
+| `grunt rc` | `rebuild-config.bat` |
+| `grunt web` | `webutil.bat all` |
+| `grunt webstop` | `webutil.bat stop` |
+| `grunt svc` | `svcutil.bat start` |
+| `grunt svcu` | `svcutil.bat u` |
+| `grunt svci` | `svcutil.bat i` |
+| `grunt up` | `webutil.bat all`, `svcutil.bat start` |
+| `grunt sanity` | `git submodule update`, `git pull upstream master`, `run-me-first.bat` |
+| `grunt certs` | `installs necessary certs with INSTALL_CERTS.cmd` |
+| `grunt scratch` | `webutil.bat stop`, `svcutil.bat u`, `RD "%project%" /S /Q`, `git clone, run-me-first.bat` |
 
-* `grunt`  *NOTE: this will run `git status` for all projects
+   
 
 How do I control the project list?
 ----------------------------------
 
-* Open gruntfile.coffee
-* 2nd line <code>projects = [...]</code>
-* edit array to control the Project List
+Project lists can be configured in `projectsConfig.coffee`
+
 
 Run a task for all projects and current branch
 ----------------------------------------------
@@ -89,43 +128,6 @@ What does this do?
  * runs run_me_first.bat for each project
 
  
-Command List
-------------
-
-| grunt command | what it does  |
-| ------------- |:-------------:|
-| `grunt` | `git submodule update, git pull upstream master` |
-| `grunt default` | `git pull upstream master` |
-| `grunt st` | `git status` |
-| `grunt gui` | `git gui` |
-| `grunt pum` | `git submodule update`, `git pull upstream master` |
-| `grunt pom` | `git submodule update`, `git pull origin master` |
-| `grunt pom` | `git submodule update`, `git pull origin master` |
-| `grunt pub --br {branchname}` | `git submodule update`, `git pull upstream master`,`git pull upstream {branchname}`
-| `grunt pr` | `git submodule update`, `git pull rebase` |
-| `grunt clone` | `git clone` |
-| `grunt clean` | `git clean -f` |
-| `grunt com` | `git checkout master` |
-| `grunt cob --br {branchname}` | `git checkout --br [branchname]` |
-| `grunt ctb --br {branchname}` | `git fetch, git checkout -t {branchname}` |
-| `grunt su` | `git submodule update` |
-| `grunt stash` | `git stash` |
-| `grunt stashp` | `git stash pop` |
-| `grunt rh` | `git reset head --hard` |
-| `grunt rmf` | `run-me-first.bat` |
-| `grunt rb` | `rake bootstrap` |
-| `grunt rsql` | `rake sql` |
-| `grunt db` | `rebuild-db.bat` |
-| `grunt rc` | `rebuild-config.bat` |
-| `grunt web` | `webutil.bat all` |
-| `grunt webstop` | `webutil.bat stop` |
-| `grunt svc` | `svcutil.bat start` |
-| `grunt svcu` | `svcutil.bat u` |
-| `grunt svci` | `svcutil.bat i` |
-| `grunt up` | `webutil.bat all`, `svcutil.bat start` |
-| `grunt sanity` | `git submodule update`, `git pull upstream master`, `run-me-first.bat` |
-| `grunt certs` | `installs necessary certs with INSTALL_CERTS.cmd` |
-| `grunt scratch` | `webutil.bat stop`, `svcutil.bat u`, `RD "%project%" /S /Q`, `git clone, run-me-first.bat` |
 
 
 
