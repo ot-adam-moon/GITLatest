@@ -87,9 +87,9 @@ module.exports = (grunt) ->
     grunt.task.run('rb')
 
   # Make task shortcuts
-  grunt.registerTask 'fromscratch', ['webstop','svcu','del','clone','rmf','pf']
+  grunt.registerTask 'fromscratch', ['webstop','svcu','del','clone','rmf','pf','certs']
   grunt.registerTask 'default', ['pum']
-  grunt.registerTask 'update', ['pum','rmf','pf']
+  grunt.registerTask 'update', ['pum','rmf','pf','certs']
   grunt.registerTask 'up', ['web','svc']
 
   setupWork = (script, cb, projList, detached) ->
