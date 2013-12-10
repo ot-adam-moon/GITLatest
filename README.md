@@ -107,20 +107,6 @@ Rebooted my box and want everything started up
 * cd Projects\GITLatest
 * grunt up
 
-Build Projects from Scratch
----------------------------
-
-* create a new directory where you want all projects to be under
-* <code>cd directoryYouChose</code>
-* <code>grunt scratch</code>
-<br/>
-What does this do?
- * stops all current webs running
- * uninstall all services installed for the projects listed
- * delete all folders that match each project name
- * <code>git clone</code> for all projects
- * runs run_me_first.bat for each project
-
  
 
 
