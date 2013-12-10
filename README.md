@@ -8,6 +8,11 @@ git setup
 * [Setup Git] (https://help.github.com/articles/set-up-git)
 * [Generate SSH Keys for git] https://help.github.com/articles/generating-ssh-keys
 
+Console2
+--------
+
+[Console2 download] (http://sourceforge.net/projects/console/files/)
+
 Powershell & posh-git
 -----------------------------
 * Open PowerShell 2.0
@@ -102,11 +107,9 @@ Rebooted my box and want everything started up
 SpendOnLife
 -----------
 
-Git Commands to use with SpendOnLife Project
---------------------------------------------
-* cd SpendOnLife
-* git status
-* git pull
+Steps to take for new Marketing Project
+
+
 
  
 
