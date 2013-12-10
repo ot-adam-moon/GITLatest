@@ -63,7 +63,6 @@ Command List
 | `grunt rsql` | `rake sql` |
 | `grunt rakesql` | `rake sql` |
 | `grunt db` | `rebuild-db.bat` |
-| `grunt rc` | `rebuild-config.bat` |
 | `grunt web` | `webutil.bat all` |
 | `grunt webstop` | `webutil.bat stop` |
 | `grunt svc` | `svcutil.bat start` |
@@ -71,14 +70,6 @@ Command List
 | `grunt svci` | `svcutil.bat i` |
 | `grunt up` | `webutil.bat all`, `svcutil.bat start` |
 | `grunt certs` | `installs necessary certs with INSTALL_CERTS.cmd` |
-| `grunt scratch` | `webutil.bat stop`, `svcutil.bat u`, `RD "%project%" /S /Q`, `git clone, run-me-first.bat` |
-
-   
-
-How do I control the project list?
-----------------------------------
-
-Project lists can be configured in `projectsConfig.coffee`
 
 
 Run a task for all projects and current branch
@@ -106,6 +97,16 @@ Rebooted my box and want everything started up
 ----------------------------------------------
 * cd Projects\GITLatest
 * grunt up
+
+
+SpendOnLife
+-----------
+
+Git Commands to use with SpendOnLife Project
+--------------------------------------------
+* cd SpendOnLife
+* git status
+* git pull
 
  
 
