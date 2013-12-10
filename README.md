@@ -1,26 +1,44 @@
-GITLatest
-=========
 
-Using Node.js async to Run in Parallel All Necessary GIT/System Bootstrap Commands to Setup & Maintain Local Box for Development.
+OT Development Environment Setup
+============================
 
-Motivation
-==========
-  *  setup a box for development from scratch with one script
-  *  <code>git pull upstream master</code> or <code>git pull rebase</code> without having 5 Powershell or GIT Bash windows open.
-  *  command to run against all necessary projects in parallel
-  *  flexibility to run cmd for one project or for all projects
-  *  a quick way to run <code>rake bootstrap</code> for all projects in parallel
-  *  don't want to be afraid to reboot my box anymore fearing things won't work.
+* Create root projects directory. Example c:\projects\
 
-Setup
-=====
+git setup
+------------
+* [Setup Git] (https://help.github.com/articles/set-up-git)
+* [Generate SSH Keys for git] https://help.github.com/articles/generating-ssh-keys
 
+Powershell & posh-git
+-----------------------------
+* Open PowerShell 2.0
+* Verify execution of scripts is allowed with `Get-ExecutionPolicy` (should be `RemoteSigned` or `Unrestricted`). If scripts are not enabled, run PowerShell as Administrator and call `Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Confirm`.
+* Verify that `git` can be run from PowerShell.
+   If the command is not found, you will need to add a git alias or add `%ProgramFiles(x86)%\Git\cmd`
+   (or `%ProgramFiles%\Git\cmd` if you're still on 32-bit) to your PATH environment variable.
+* If you updated the PATH environment variable, close current Powershell window and reopen.
+* Run `git clone https://github.com/dahlbyk/posh-git`
+* `cd posh-git`
+* Run `.\install.ps1`.
+
+Nodejs
+----------
 * Install [node.js](http://nodejs.org/)
+
+Growl
+--------
 * Install [Growl for Windows](http://www.growlforwindows.com/gfw/) *Note: THIS IS OPTIONAL
-* Make sure all projects are under one directory Ex: Projects\
-* `cd ProjectsFolderYouChoose`
-* `git clone git@github.com:ot-adam-moon/GITLatest.git`
-* `npm install .`
+
+GITLatest
+-------------
+* `cd ProjectsRootDirectoryYouChose`
+* Run `git clone git@github.com:ot-adam-moon/GITLatest.git`
+* `npm install`
+
+
+    https://github.com/dahlbyk/posh-git
+
+
 * `grunt`  *NOTE: this will run `git status` for all projects
 
 How do I control the project list?

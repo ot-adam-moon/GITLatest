@@ -1,9 +1,6 @@
 module.exports = (grunt) ->
   config = require("./projectsConfig")
 
-#  projects = ['ProductFulfillment','EnterpriseServices','WebClients','CustomerFiltering','SpendOnLife','OneTechnologies.Framework','AffiliateManager', 'ProductCatalog']
-#  projectsDB = ['EnterpriseServices','WebClients','CustomerFiltering','SpendOnLife','OneTechnologies.Framework']
-#  projRef = { 'pf': 'ProductFulfillment', 'es' : 'EnterpriseServices' , 'wc' : 'WebClients', 'cf': 'CustomerFiltering','spl': 'SpendOnLife', 'otf':'OneTechnologies.Framework','am': 'AffiliateManager','pc': 'ProductCatalog'}
   async = require("async")
   spawn = require('child_process').spawn
   growl = require('growl')
@@ -20,31 +17,31 @@ module.exports = (grunt) ->
   grunt.initConfig
 
   grunt.registerTask 'db', 'REBUILD-DB', () ->
-    run 'REBUILD_DB.cmd', this.async(), config.parallelProjects
+    run 'REBUILD_DB.cmd', this.async(), config.dbProjects, true
   grunt.registerTask 'rc', 'REBUILD-CONFIG', () ->
-    run 'REBUILD_CONFIG.cmd', this.async(),  config.allProjects
+    run 'REBUILD_CONFIG.cmd', this.async(),  config.allProjects, true
   grunt.registerTask 'certs', 'INSTALL CERTIFICATES', () ->
-    run 'INSTALL_CERTS.cmd',this.async()
+    run 'INSTALL_CERTS.cmd',this.async(), false
   grunt.registerTask 'svcu','Services Uninstall', () ->
-    run 'SVC_UNINSTALL.cmd',this.async(), config.svcProjects
+    run 'SVC_UNINSTALL.cmd',this.async(), config.svcProjects, false
   grunt.registerTask 'svcuninstall','Services Uninstall', () ->
-    run 'SVC_UNINSTALL.cmd',this.async(), config.svcProjects
+    run 'SVC_UNINSTALL.cmd',this.async(), config.svcProjects, false
   grunt.registerTask 'svci', 'Services Install', () ->
-    run 'SVC_INSTALL.cmd',this.async(), config.svcProjects
+    run 'SVC_INSTALL.cmd',this.async(), config.svcProjects, false
   grunt.registerTask 'svcinstall', 'Services Install', () ->
-    run 'SVC_INSTALL.cmd',this.async(), config.svcProjects
+    run 'SVC_INSTALL.cmd',this.async(), config.svcProjects, false
   grunt.registerTask 'web','WebUtil All', () ->
-    run 'WEBUTIL.cmd ',this.async(), config.webProjects
+    run 'WEBUTIL.cmd ',this.async(), config.webProjects, false
   grunt.registerTask 'webstop', 'WebUtil Stop',() ->
-    run 'WEBUTIL_STOP.cmd ',this.async(), config.webProjects
+    run 'WEBUTIL_STOP.cmd ',this.async(), config.webProjects, false
   grunt.registerTask 'del', () ->
-    run 'DELETE_ALL.cmd ',this.async(), config.allProjects
+    run 'DELETE_ALL.cmd ',this.async(), config.allProjects, true
   grunt.registerTask 'svc', 'SvcUtil Start', () ->
-    run 'SVCUTIL.cmd',this.async(), config.svcProjects
+    run 'SVCUTIL.cmd',this.async(), config.svcProjects, false
   grunt.registerTask 'com', 'GIT CHECKOUT MASTER', () ->
-    run 'GIT_CHECKOUT_MASTER.cmd',this.async()
+    run 'GIT_CHECKOUT_MASTER.cmd',this.async(), true
   grunt.registerTask 'clone', 'GIT CLONE', () ->
-    run 'GIT_CLONE.cmd',this.async(), config.allProjects
+    run 'GIT_CLONE.cmd',this.async(), config.allProjects, true
   grunt.registerTask 'cob', 'GIT CHECKOUT --br [branchname]', () ->
     run 'GIT_CHECKOUT_BRANCH.cmd',this.async()
   grunt.registerTask 'ctb', 'GIT FETCH,GIT CHECKOUT -t [branchname]', () ->
@@ -52,17 +49,17 @@ module.exports = (grunt) ->
   grunt.registerTask 'pum', 'GIT PULL UPSTREAM MASTER',() ->
     run 'GIT_PULL_UPSTREAM_MASTER.cmd',this.async(), config.allProjects
   grunt.registerTask 'pum', 'GIT PULL UPSTREAM MASTER',() ->
-    run 'GIT_PULL_UPSTREAM_MASTER.cmd',this.async(), config.allProjects
+    run 'GIT_PULL_UPSTREAM_MASTER.cmd',this.async(), config.allProjects, true
   grunt.registerTask 'pom', 'GIT PULL ORIGIN MASTER',() ->
-    run 'GIT_PULL_ORIGIN_MASTER.cmd',this.async(), config.allProjects
+    run 'GIT_PULL_ORIGIN_MASTER.cmd',this.async(), config.allProjects, true
   grunt.registerTask 'pub', 'GIT PULL UPSTREAM [BRANCH]',() ->
-    run 'GIT_PULL_UPSTREAM_BRANCH.cmd',this.async(), config.allProjects
+    run 'GIT_PULL_UPSTREAM_BRANCH.cmd',this.async(), config.allProjects, true
   grunt.registerTask 'pull', 'GIT PULL', () ->
-    run 'GIT_PULL.cmd',this.async(), config.allProjects
+    run 'GIT_PULL.cmd',this.async(), config.allProjects, true
   grunt.registerTask 'pr', 'GIT PULL REBASE', () ->
-    run 'GIT_PULL_REBASE.cmd',this.async(), config.allProjects
+    run 'GIT_PULL_REBASE.cmd',this.async(), config.allProjects, true
   grunt.registerTask 'st', 'GIT STATUS', () ->
-    run 'GIT_STATUS.cmd ',this.async(), config.allProjects
+    run 'GIT_STATUS.cmd ',this.async(), config.allProjects, true
   grunt.registerTask 'su', 'GIT SUBMODULE UPDATE',() ->
     run 'GIT_SUBMODULE_UPDATE.cmd',this.async(), config.allProjects
   grunt.registerTask 'rh', 'GIT RESET HEAD --HARD', () ->
@@ -78,13 +75,13 @@ module.exports = (grunt) ->
   grunt.registerTask 'gui', 'GIT GUI',() ->
     run 'GIT_GUI.cmd',this.async(), config.allProjects
   grunt.registerTask 'rsql', 'RAKE SQL', () ->
-    run 'RAKE_SQL.cmd',this.async(), config.parallelProjects
+    run 'RAKE_SQL.cmd',this.async(), config.parallelProjects, true
   grunt.registerTask 'rakesql', 'RAKE SQL', () ->
-    run 'RAKE_SQL.cmd',this.async(), config.parallelProjects
+    run 'RAKE_SQL.cmd',this.async(), config.parallelProjects, true
   grunt.registerTask 'stash', 'RAKE SQL', () ->
-    run 'GIT_STASH.cmd',this.async(), config.parallelProjects
+    run 'GIT_STASH.cmd',this.async(), config.parallelProjects, true
   grunt.registerTask 'stashpop', 'RAKE SQL', () ->
-    run 'GIT_STASH_POP.cmd',this.async(), config.parallelProjects
+    run 'GIT_STASH_POP.cmd',this.async(), config.parallelProjects, true
   grunt.registerTask 'pf', "GIT PULL UPSTREAM MASTER, GIT PULL --REBASE, RUN ME FIRST for ProductFulfillment", () ->
     proj = 'ProductFulfillment'
     grunt.task.run('rb')
@@ -95,20 +92,20 @@ module.exports = (grunt) ->
   grunt.registerTask 'update', ['pum','rmf','pf']
   grunt.registerTask 'up', ['web','svc']
 
-  setupWork = (script, cb, projList) ->
+  setupWork = (script, cb, projList, detached) ->
     workList = []
     i = 0
 
     if projList
       while i < projList.length
-        workList.push async.apply(cmd, script, projList[i], cb)
+        workList.push async.apply(cmd, script, projList[i], cb, br, detached)
         i++
     else
-      workList.push async.apply(cmd, script, undefined, cb)
+      workList.push async.apply(cmd, script, undefined, cb, br, detached)
 
     workList
 
-  run = (script, cb, projList) ->
+  run = (script, cb, projList, detached) ->
     projCount = 0
 
     if projList
@@ -123,13 +120,13 @@ module.exports = (grunt) ->
                 console.log script + ' COMPLETED for all projects in : ' + ((endTime-startTime)/1000).toFixed(3).toString() + ' seconds'
                 cb()
     unless typeof (proj) is "undefined"
-      cmd script, proj, callback, br
+      cmd script, proj, callback, detached
     else
-      workList = setupWork(script, callback, projList)
+      workList = setupWork(script, callback, projList, detached)
       async.parallel workList,
         callback
 
-  cmd = (script, project, callback, branch) ->
+  cmd = (script, project, callback, branch, detached) ->
     unless typeof (branch) is "undefined"
       console.log (script + " " + project + " " + branch)
     else
@@ -138,19 +135,19 @@ module.exports = (grunt) ->
     unless typeof (branch) is "undefined"
       args.push branch
 
-    cmdProcess = spawn script, args, {detached: true}
+    cmdProcess = spawn script, args, {detached: detached}
 
     cmdProcess.stdout.on "data", (data) ->
       console.log data + '\n-----------------------------------\n'
 
     cmdProcess.stderr.on "error", (error) ->
-      console.log error
+      console.log '\n' + error
 
     cmdProcess.stderr.on 'data', (data) ->
-      console.log('ERROR:  ' + data + '\n-----------------------------------\n')
+      console.log('\nERROR:  ' + data + '\n-----------------------------------\n')
 
     cmdProcess.stdin.on "data", (chunk) ->
-      cmdProcess.stdout.write "data: " + chunk
+      cmdProcess.stdout.write "\ndata: " + chunk
 
     cmdProcess.on "exit", (code) ->
       msg = script + " "
