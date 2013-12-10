@@ -61,17 +61,17 @@ module.exports = (grunt) ->
   grunt.registerTask 'st', 'GIT STATUS', () ->
     run 'GIT_STATUS.cmd ',this.async(), config.allProjects, true
   grunt.registerTask 'su', 'GIT SUBMODULE UPDATE',() ->
-    run 'GIT_SUBMODULE_UPDATE.cmd',this.async(), config.allProjects
+    run 'GIT_SUBMODULE_UPDATE.cmd',this.async(), config.allProjects, true
   grunt.registerTask 'rh', 'GIT RESET HEAD --HARD', () ->
-    run 'GIT_RESET_HARD.cmd',this.async(), config.allProjects
+    run 'GIT_RESET_HARD.cmd',this.async(), config.allProjects, true
   grunt.registerTask 'resethard', 'GIT RESET HEAD --HARD', () ->
-    run 'GIT_RESET_HARD.cmd',this.async(), config.allProjects
+    run 'GIT_RESET_HARD.cmd',this.async(), config.allProjects, true
   grunt.registerTask 'rmf', 'RUN_ME_FIRST.BAT',() ->
-    run 'RUN_ME_FIRST.cmd',this.async(), config.parallelProjects
+    run 'RUN_ME_FIRST.cmd',this.async(), config.parallelProjects, true
   grunt.registerTask 'rb', 'RAKE BOOTSTRAP',() ->
-    run 'RAKE_BOOTSTRAP.cmd',this.async(), config.parallelProjects
+    run 'RAKE_BOOTSTRAP.cmd',this.async(), config.parallelProjects, true
   grunt.registerTask 'rakebootstrap', 'RAKE BOOTSTRAP',() ->
-    run 'RAKE_BOOTSTRAP.cmd',this.async(), config.allProjects
+    run 'RAKE_BOOTSTRAP.cmd',this.async(), config.allProjects, true
   grunt.registerTask 'gui', 'GIT GUI',() ->
     run 'GIT_GUI.cmd',this.async(), config.allProjects
   grunt.registerTask 'rsql', 'RAKE SQL', () ->
@@ -141,10 +141,10 @@ module.exports = (grunt) ->
       console.log data + '\n-----------------------------------\n'
 
     cmdProcess.stderr.on "error", (error) ->
-      console.log '\n' + error
+      console.log '\n' + error + '\n-----------------------------------\n'
 
     cmdProcess.stderr.on 'data', (data) ->
-      console.log('\nERROR:  ' + data + '\n-----------------------------------\n')
+      console.log('\n' + data + '\n-----------------------------------\n')
 
     cmdProcess.stdin.on "data", (chunk) ->
       cmdProcess.stdout.write "\ndata: " + chunk
