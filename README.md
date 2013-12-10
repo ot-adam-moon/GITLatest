@@ -40,12 +40,17 @@ Growl
 --------
 * Install [Growl for Windows](http://www.growlforwindows.com/gfw/) *Note: THIS IS OPTIONAL
 
+Initial Pre Setup
+-------------
+* Inside {ProjectsRoot} Directory create a directory called `certs`
+* Copy `SpendOnLife-v15.bak` and `Tracking-v2.bak` to `C:\Program Files\Microsoft SQL Server\MSSQL{NUMBER}.MSSQLSERVER\MSSQL\Backup`
+
+
 GITLatest
 -------------
 * `cd ProjectsRootDirectoryYouChose`
 * Run `git clone git@github.com:ot-adam-moon/GITLatest.git`
 * `npm install`
-
 
    starting from scratch
    ---------------------
@@ -109,7 +114,8 @@ SpendOnLife
 
 Steps to take for new Marketing Project
 
-
+* have Powershell tab open from Console2 to `GITLatest` directory
+* open second Powershell window and `cd SpendOnLife`
 
  
 
