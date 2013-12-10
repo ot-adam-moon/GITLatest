@@ -54,8 +54,8 @@ Command List
 | grunt command | what it does  |
 | ------------- |:-------------:|
 | `grunt` | `git submodule update, git pull upstream master` |
-| `grunt fromscratch` | rebuilds all repositories from scratch and sets up each repositories services,webs, and databases |
-| `grunt refresh` | `git submodule update, git pull upstream master, ` |
+| `grunt fromscratch` | rebuilds all repositories from scratch and sets up each repositories services,webs, and database |
+| `grunt refresh` | pulls latest from master for each repository, refreshes services, webs, and database |
 | `grunt pum` | `git submodule update`, `git pull upstream master` |
 | `grunt rmf` | `run-me-first.bat` |
 | `grunt rb` | `rake bootstrap` |
