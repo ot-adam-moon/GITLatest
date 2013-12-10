@@ -54,13 +54,10 @@ Command List
 | grunt command | what it does  |
 | ------------- |:-------------:|
 | `grunt` | `git submodule update, git pull upstream master` |
-| `grunt default` | `git pull upstream master` |
-| `grunt st` | `git status` |
-| `grunt gui` | `git gui` |
+| `grunt fromscratch` | `git submodule update, git pull upstream master, run-me-first.bat` |
+| `grunt refresh` | `git submodule update, git pull upstream master, ` |
 | `grunt pum` | `git submodule update`, `git pull upstream master` |
-| `grunt pom` | `git submodule update`, `git pull origin master` |
-| `grunt pom` | `git submodule update`, `git pull origin master` |
-| `grunt pub --br {branchname}` | `git submodule update`, `git pull upstream master`,`git pull upstream {branchname}`
+
 | `grunt pr` | `git submodule update`, `git pull rebase` |
 | `grunt clone` | `git clone` |
 | `grunt clean` | `git clean -f` |
