@@ -24,6 +24,13 @@ Nodejs
 ----------
 * Install [node.js](http://nodejs.org/)
 
+Ruby
+----
+[Ruby for Windows](http://rubyinstaller.org/)
+
+* During the installer select the checkbox to add bin directory to PATH Environment Variable
+* After installing Ruby make sure to reopen powershell window because PATH Environment change
+
 Growl
 --------
 * Install [Growl for Windows](http://www.growlforwindows.com/gfw/) *Note: THIS IS OPTIONAL
