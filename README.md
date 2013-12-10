@@ -54,23 +54,14 @@ Command List
 | grunt command | what it does  |
 | ------------- |:-------------:|
 | `grunt` | `git submodule update, git pull upstream master` |
-| `grunt fromscratch` | `git submodule update, git pull upstream master, run-me-first.bat` |
+| `grunt fromscratch` | rebuilds all repositories from scratch and sets up each repositories services,webs, and databases |
 | `grunt refresh` | `git submodule update, git pull upstream master, ` |
 | `grunt pum` | `git submodule update`, `git pull upstream master` |
-
-| `grunt pr` | `git submodule update`, `git pull rebase` |
-| `grunt clone` | `git clone` |
-| `grunt clean` | `git clean -f` |
-| `grunt com` | `git checkout master` |
-| `grunt cob --br {branchname}` | `git checkout --br [branchname]` |
-| `grunt ctb --br {branchname}` | `git fetch, git checkout -t {branchname}` |
-| `grunt su` | `git submodule update` |
-| `grunt stash` | `git stash` |
-| `grunt stashp` | `git stash pop` |
-| `grunt rh` | `git reset head --hard` |
 | `grunt rmf` | `run-me-first.bat` |
 | `grunt rb` | `rake bootstrap` |
+| `grunt rakebootstrap` | `rake bootstrap` |
 | `grunt rsql` | `rake sql` |
+| `grunt rakesql` | `rake sql` |
 | `grunt db` | `rebuild-db.bat` |
 | `grunt rc` | `rebuild-config.bat` |
 | `grunt web` | `webutil.bat all` |
@@ -79,7 +70,6 @@ Command List
 | `grunt svcu` | `svcutil.bat u` |
 | `grunt svci` | `svcutil.bat i` |
 | `grunt up` | `webutil.bat all`, `svcutil.bat start` |
-| `grunt sanity` | `git submodule update`, `git pull upstream master`, `run-me-first.bat` |
 | `grunt certs` | `installs necessary certs with INSTALL_CERTS.cmd` |
 | `grunt scratch` | `webutil.bat stop`, `svcutil.bat u`, `RD "%project%" /S /Q`, `git clone, run-me-first.bat` |
 
