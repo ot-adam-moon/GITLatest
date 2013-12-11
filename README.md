@@ -88,7 +88,7 @@ Command List
 | `grunt rakebootstrap` | `rake bootstrap` |
 | `grunt rsql` | `rake sql` |
 | `grunt rakesql` | `rake sql` |
-| `grunt db` | `rebuild-db.bat` |
+| `grunt sql` | `rebuild-db.bat` |
 | `grunt web` | `webutil.bat all` |
 | `grunt webstop` | `webutil.bat stop` |
 | `grunt svc` | `svcutil.bat start` |

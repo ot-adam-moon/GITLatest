@@ -18,20 +18,20 @@ module.exports = (grunt) ->
   # Configure Grunt
   grunt.initConfig
 
-  grunt.registerTask 'db', 'REBUILD-DB', () ->
+  grunt.registerTask 'sql', 'REBUILD-DB', () ->
     run otScripts + 'REBUILD_DB.cmd', this.async(), config.dbProjects, true
-  grunt.registerTask 'rc', 'REBUILD-CONFIG', () ->
+  grunt.registerTask 'config', 'REBUILD-CONFIG', () ->
     run otScripts + 'REBUILD_CONFIG.cmd', this.async(),  config.allProjects, true
   grunt.registerTask 'certs', 'INSTALL CERTIFICATES', () ->
     run otScripts + 'INSTALL_CERTS.cmd',this.async(), false
   grunt.registerTask 'svcu','Services Uninstall', () ->
-    run otScripts + 'SVC_UNINSTALL.cmd',this.async(), config.svcProjects, false
+    run otScripts + 'SVC_UNINSTALL.cmd',this.async(), config.svcProjects, true
   grunt.registerTask 'svcuninstall','Services Uninstall', () ->
-    run otScripts + 'SVC_UNINSTALL.cmd',this.async(), config.svcProjects, false
+    run otScripts + 'SVC_UNINSTALL.cmd',this.async(), config.svcProjects, true
   grunt.registerTask 'svci', 'Services Install', () ->
-    run otScripts + 'SVC_INSTALL.cmd',this.async(), config.svcProjects, false
+    run otScripts + 'SVC_INSTALL.cmd',this.async(), config.svcProjects, true
   grunt.registerTask 'svcinstall', 'Services Install', () ->
-    run otScripts + 'SVC_INSTALL.cmd',this.async(), config.svcProjects, false
+    run otScripts + 'SVC_INSTALL.cmd',this.async(), config.svcProjects, true
   grunt.registerTask 'web','WebUtil All', () ->
     run otScripts + 'WEBUTIL.cmd ',this.async(), config.webProjects, false
   grunt.registerTask 'webstop', 'WebUtil Stop',() ->
@@ -140,12 +140,18 @@ module.exports = (grunt) ->
     cmdProcess = spawn script, args, {detached: detached}
 
     cmdProcess.proj = project
+    that = cmdProcess
 
     cmdProcess.stdout.on "data", (data) ->
-      console.log data + '\n-----------------------------------\n'
+      if !that.proj
+         that.proj = ''
+      console.log '\n' +  that.proj + ":  " +  '\n-----------------------------------\n' + data + '\n-----------------------------------\n'
 
     cmdProcess.stderr.on "error", (error) ->
-      console.log '\n' + error + '\n-----------------------------------\n'
+      console.log(that.proj)
+      if !that.proj
+        that.proj = ''
+      console.log '\n' +  that.proj + ":" +  '\n-----------------------------------\n' + error + '\n-----------------------------------\n'
 
     cmdProcess.stderr.on 'data', (data) ->
       console.log('\n' + data + '\n-----------------------------------\n')
@@ -154,9 +160,9 @@ module.exports = (grunt) ->
       cmdProcess.stdout.write "\ndata: " + chunk
 
     cmdProcess.on "exit", (code) ->
-      if !this.proj
-        this.proj = ''
-      msg = '\n' +  this.proj + " " + script.replace(otScripts,'').replace(gitScripts,'') + ' COMPLETED\n-----------------------------------\n'
+      if !that.proj
+        that.proj = ''
+      msg = '\n' +  that.proj + " " + script.replace(otScripts,'').replace(gitScripts,'') + ' COMPLETED\n-----------------------------------\n'
       grunt.log.write msg
       growlMsg(msg)
       callback(null, "")
