@@ -8,6 +8,11 @@ git setup
 * [Setup Git] (https://help.github.com/articles/set-up-git)
 * [Generate SSH Keys for git] https://help.github.com/articles/generating-ssh-keys
 
+Console2
+--------
+
+[Console2 download] (http://sourceforge.net/projects/console/files/)
+
 Powershell & posh-git
 -----------------------------
 * Open PowerShell 2.0
@@ -35,12 +40,17 @@ Growl
 --------
 * Install [Growl for Windows](http://www.growlforwindows.com/gfw/) *Note: THIS IS OPTIONAL
 
+Initial Pre Setup
+-------------
+* Inside {ProjectsRoot} Directory create a directory called `certs`
+* Copy `SpendOnLife-v15.bak` and `Tracking-v2.bak` to `C:\Program Files\Microsoft SQL Server\MSSQL{NUMBER}.MSSQLSERVER\MSSQL\Backup`
+
+
 GITLatest
 -------------
 * `cd ProjectsRootDirectoryYouChose`
 * Run `git clone git@github.com:ot-adam-moon/GITLatest.git`
 * `npm install`
-
 
    starting from scratch
    ---------------------
@@ -54,8 +64,8 @@ Command List
 | grunt command | what it does  |
 | ------------- |:-------------:|
 | `grunt` | `git submodule update, git pull upstream master` |
-| `grunt fromscratch` | rebuilds all repositories from scratch and sets up each repositories services,webs, and database |
-| `grunt refresh` | pulls latest from master for each repository, refreshes services, webs, and database |
+| `grunt fromscratch` | rebuilds all repositories from scratch and sets up each repositories services,webs, and database, and installs certificates |
+| `grunt update` | pulls latest from master for each repository, refreshes services, webs, and database, reinstalls certificates |
 | `grunt pum` | `git submodule update`, `git pull upstream master` |
 | `grunt rmf` | `run-me-first.bat` |
 | `grunt rb` | `rake bootstrap` |
@@ -63,7 +73,6 @@ Command List
 | `grunt rsql` | `rake sql` |
 | `grunt rakesql` | `rake sql` |
 | `grunt db` | `rebuild-db.bat` |
-| `grunt rc` | `rebuild-config.bat` |
 | `grunt web` | `webutil.bat all` |
 | `grunt webstop` | `webutil.bat stop` |
 | `grunt svc` | `svcutil.bat start` |
@@ -71,14 +80,6 @@ Command List
 | `grunt svci` | `svcutil.bat i` |
 | `grunt up` | `webutil.bat all`, `svcutil.bat start` |
 | `grunt certs` | `installs necessary certs with INSTALL_CERTS.cmd` |
-| `grunt scratch` | `webutil.bat stop`, `svcutil.bat u`, `RD "%project%" /S /Q`, `git clone, run-me-first.bat` |
-
-   
-
-How do I control the project list?
-----------------------------------
-
-Project lists can be configured in `projectsConfig.coffee`
 
 
 Run a task for all projects and current branch
@@ -106,6 +107,15 @@ Rebooted my box and want everything started up
 ----------------------------------------------
 * cd Projects\GITLatest
 * grunt up
+
+
+SpendOnLife
+-----------
+
+Steps to take for new Marketing Project
+
+* have Powershell tab open from Console2 to `GITLatest` directory
+* open second Powershell window and `cd SpendOnLife`
 
  
 
