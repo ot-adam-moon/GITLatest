@@ -35,9 +35,9 @@ Install Console2
 * Open Console2.exe as Administrator
 * Pin Console2 to TaskBar
 * In Console2 window, click Edit > Settings...
-* ![Add tab for Powershell][logo]
+* ![Add tab for Powershell][tabForPowershell]
 
-[logo]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 2"
+[tabForPowershell]: https://raw.github.com/ot-adam-moon/GITLatest/master/img/console2_settings.png "Add tab for Powershell"
 
 
 Powershell & posh-git
