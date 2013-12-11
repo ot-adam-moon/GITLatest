@@ -154,7 +154,9 @@ module.exports = (grunt) ->
       cmdProcess.stdout.write "\ndata: " + chunk
 
     cmdProcess.on "exit", (code) ->
-      msg = '\n' + if this.proj then this.proj else '' + " " + script.replace(otScripts,'').replace(gitScripts,'') + " " + 'COMPLETED\n-----------------------------------\n'
+      if !this.proj
+        this.proj = ''
+      msg = '\n' +  this.proj + " " + script.replace(otScripts,'').replace(gitScripts,'') + ' COMPLETED\n-----------------------------------\n'
       grunt.log.write msg
       growlMsg(msg)
       callback(null, "")
