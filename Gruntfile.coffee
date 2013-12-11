@@ -67,9 +67,9 @@ module.exports = (grunt) ->
   grunt.registerTask 'resethard', 'GIT RESET HEAD --HARD', () ->
     run 'GIT_RESET_HARD.cmd',this.async(), config.allProjects, true
   grunt.registerTask 'rmf', 'RUN_ME_FIRST.BAT',() ->
-    run 'RUN_ME_FIRST.cmd',this.async(), config.parallelProjects, true
+    run 'RUN_ME_FIRST.cmd',this.async(), config.parallelProjects, false
   grunt.registerTask 'rb', 'RAKE BOOTSTRAP',() ->
-    run 'RAKE_BOOTSTRAP.cmd',this.async(), config.parallelProjects, true
+    run 'RAKE_BOOTSTRAP.cmd',this.async(), config.parallelProjects, false
   grunt.registerTask 'rakebootstrap', 'RAKE BOOTSTRAP',() ->
     run 'RAKE_BOOTSTRAP.cmd',this.async(), config.allProjects, true
   grunt.registerTask 'gui', 'GIT GUI',() ->
@@ -137,6 +137,8 @@ module.exports = (grunt) ->
 
     cmdProcess = spawn script, args, {detached: detached}
 
+    cmdProcess.proj = project
+
     cmdProcess.stdout.on "data", (data) ->
       console.log data + '\n-----------------------------------\n'
 
@@ -150,8 +152,7 @@ module.exports = (grunt) ->
       cmdProcess.stdout.write "\ndata: " + chunk
 
     cmdProcess.on "exit", (code) ->
-      msg = script + " "
-      msg = msg.replace(/\_/g, ' ').replace(/\.cmd/, '').toLowerCase() +  if project then project else '' + ' COMPLETED\n-----------------------------------\n'
+      msg = '\n' + this.proj + " " + script + " " + 'COMPLETED\n-----------------------------------\n'
       grunt.log.write msg
       growlMsg(msg)
       callback(null, "")
