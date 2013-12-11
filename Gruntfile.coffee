@@ -1,5 +1,7 @@
 module.exports = (grunt) ->
   config = require("./projectsConfig")
+  gitScripts = '.\\scripts\\git\\'
+  otScripts = '.\\scripts\\ot\\'
 
   async = require("async")
   spawn = require('child_process').spawn
@@ -17,71 +19,71 @@ module.exports = (grunt) ->
   grunt.initConfig
 
   grunt.registerTask 'db', 'REBUILD-DB', () ->
-    run 'REBUILD_DB.cmd', this.async(), config.dbProjects, true
+    run otScripts + 'REBUILD_DB.cmd', this.async(), config.dbProjects, true
   grunt.registerTask 'rc', 'REBUILD-CONFIG', () ->
-    run 'REBUILD_CONFIG.cmd', this.async(),  config.allProjects, true
+    run otScripts + 'REBUILD_CONFIG.cmd', this.async(),  config.allProjects, true
   grunt.registerTask 'certs', 'INSTALL CERTIFICATES', () ->
-    run 'INSTALL_CERTS.cmd',this.async(), false
+    run otScripts + 'INSTALL_CERTS.cmd',this.async(), false
   grunt.registerTask 'svcu','Services Uninstall', () ->
-    run 'SVC_UNINSTALL.cmd',this.async(), config.svcProjects, false
+    run otScripts + 'SVC_UNINSTALL.cmd',this.async(), config.svcProjects, false
   grunt.registerTask 'svcuninstall','Services Uninstall', () ->
-    run 'SVC_UNINSTALL.cmd',this.async(), config.svcProjects, false
+    run otScripts + 'SVC_UNINSTALL.cmd',this.async(), config.svcProjects, false
   grunt.registerTask 'svci', 'Services Install', () ->
-    run 'SVC_INSTALL.cmd',this.async(), config.svcProjects, false
+    run otScripts + 'SVC_INSTALL.cmd',this.async(), config.svcProjects, false
   grunt.registerTask 'svcinstall', 'Services Install', () ->
-    run 'SVC_INSTALL.cmd',this.async(), config.svcProjects, false
+    run otScripts + 'SVC_INSTALL.cmd',this.async(), config.svcProjects, false
   grunt.registerTask 'web','WebUtil All', () ->
-    run 'WEBUTIL.cmd ',this.async(), config.webProjects, false
+    run otScripts + 'WEBUTIL.cmd ',this.async(), config.webProjects, false
   grunt.registerTask 'webstop', 'WebUtil Stop',() ->
-    run 'WEBUTIL_STOP.cmd ',this.async(), config.webProjects, false
+    run otScripts + 'WEBUTIL_STOP.cmd ',this.async(), config.webProjects, false
   grunt.registerTask 'del', () ->
-    run 'DELETE_ALL.cmd ',this.async(), config.allProjects, true
+    run otScripts + 'DELETE_ALL.cmd ',this.async(), config.allProjects, true
   grunt.registerTask 'svc', 'SvcUtil Start', () ->
-    run 'SVCUTIL.cmd',this.async(), config.svcProjects, false
+    run otScripts + 'SVCUTIL.cmd',this.async(), config.svcProjects, false
   grunt.registerTask 'com', 'GIT CHECKOUT MASTER', () ->
-    run 'GIT_CHECKOUT_MASTER.cmd',this.async(), true
+    run gitScripts + 'GIT_CHECKOUT_MASTER.cmd',this.async(), true
   grunt.registerTask 'clone', 'GIT CLONE', () ->
-    run 'GIT_CLONE.cmd',this.async(), config.allProjects, true
+    run gitScripts+ 'GIT_CLONE.cmd',this.async(), config.allProjects, true
   grunt.registerTask 'cob', 'GIT CHECKOUT --br [branchname]', () ->
-    run 'GIT_CHECKOUT_BRANCH.cmd',this.async()
+    run gitScripts + 'GIT_CHECKOUT_BRANCH.cmd',this.async()
   grunt.registerTask 'ctb', 'GIT FETCH,GIT CHECKOUT -t [branchname]', () ->
-    run 'GIT_CREATE_TRACKING_BRANCH.cmd',this.async()
+    run gitScripts + 'GIT_CREATE_TRACKING_BRANCH.cmd',this.async()
   grunt.registerTask 'pum', 'GIT PULL UPSTREAM MASTER',() ->
-    run 'GIT_PULL_UPSTREAM_MASTER.cmd',this.async(), config.allProjects
+    run gitScripts + 'GIT_PULL_UPSTREAM_MASTER.cmd',this.async(), config.allProjects
   grunt.registerTask 'pum', 'GIT PULL UPSTREAM MASTER',() ->
-    run 'GIT_PULL_UPSTREAM_MASTER.cmd',this.async(), config.allProjects, true
+    run gitScripts + 'GIT_PULL_UPSTREAM_MASTER.cmd',this.async(), config.allProjects, true
   grunt.registerTask 'pom', 'GIT PULL ORIGIN MASTER',() ->
-    run 'GIT_PULL_ORIGIN_MASTER.cmd',this.async(), config.allProjects, true
+    run gitScripts + 'GIT_PULL_ORIGIN_MASTER.cmd',this.async(), config.allProjects, true
   grunt.registerTask 'pub', 'GIT PULL UPSTREAM [BRANCH]',() ->
-    run 'GIT_PULL_UPSTREAM_BRANCH.cmd',this.async(), config.allProjects, true
+    run gitScripts + 'GIT_PULL_UPSTREAM_BRANCH.cmd',this.async(), config.allProjects, true
   grunt.registerTask 'pull', 'GIT PULL', () ->
-    run 'GIT_PULL.cmd',this.async(), config.allProjects, true
+    run gitScripts + 'GIT_PULL.cmd',this.async(), config.allProjects, true
   grunt.registerTask 'pr', 'GIT PULL REBASE', () ->
-    run 'GIT_PULL_REBASE.cmd',this.async(), config.allProjects, true
+    run gitScripts + 'GIT_PULL_REBASE.cmd',this.async(), config.allProjects, true
   grunt.registerTask 'st', 'GIT STATUS', () ->
-    run 'GIT_STATUS.cmd ',this.async(), config.allProjects, true
+    run gitScripts + 'GIT_STATUS.cmd ',this.async(), config.allProjects, true
   grunt.registerTask 'su', 'GIT SUBMODULE UPDATE',() ->
-    run 'GIT_SUBMODULE_UPDATE.cmd',this.async(), config.allProjects, true
+    run gitScripts + 'GIT_SUBMODULE_UPDATE.cmd',this.async(), config.allProjects, true
   grunt.registerTask 'rh', 'GIT RESET HEAD --HARD', () ->
-    run 'GIT_RESET_HARD.cmd',this.async(), config.allProjects, true
+    run gitScripts + 'GIT_RESET_HARD.cmd',this.async(), config.allProjects, true
   grunt.registerTask 'resethard', 'GIT RESET HEAD --HARD', () ->
-    run 'GIT_RESET_HARD.cmd',this.async(), config.allProjects, true
+    run gitScripts + 'GIT_RESET_HARD.cmd',this.async(), config.allProjects, true
   grunt.registerTask 'rmf', 'RUN_ME_FIRST.BAT',() ->
-    run 'RUN_ME_FIRST.cmd',this.async(), config.parallelProjects, false
+    run otScripts + 'RUN_ME_FIRST.cmd',this.async(), config.parallelProjects, false
   grunt.registerTask 'rb', 'RAKE BOOTSTRAP',() ->
-    run 'RAKE_BOOTSTRAP.cmd',this.async(), config.parallelProjects, false
+    run otScripts + 'RAKE_BOOTSTRAP.cmd',this.async(), config.parallelProjects, false
   grunt.registerTask 'rakebootstrap', 'RAKE BOOTSTRAP',() ->
-    run 'RAKE_BOOTSTRAP.cmd',this.async(), config.allProjects, true
+    run otScripts + 'RAKE_BOOTSTRAP.cmd',this.async(), config.allProjects, true
   grunt.registerTask 'gui', 'GIT GUI',() ->
-    run 'GIT_GUI.cmd',this.async(), config.allProjects
+    run gitScripts + 'GIT_GUI.cmd',this.async(), config.allProjects
   grunt.registerTask 'rsql', 'RAKE SQL', () ->
-    run 'RAKE_SQL.cmd',this.async(), config.parallelProjects, true
+    run otScripts + 'RAKE_SQL.cmd',this.async(), config.parallelProjects, true
   grunt.registerTask 'rakesql', 'RAKE SQL', () ->
-    run 'RAKE_SQL.cmd',this.async(), config.parallelProjects, true
+    run otScripts + 'RAKE_SQL.cmd',this.async(), config.parallelProjects, true
   grunt.registerTask 'stash', 'RAKE SQL', () ->
-    run 'GIT_STASH.cmd',this.async(), config.parallelProjects, true
+    run gitScripts + 'GIT_STASH.cmd',this.async(), config.parallelProjects, true
   grunt.registerTask 'stashpop', 'RAKE SQL', () ->
-    run 'GIT_STASH_POP.cmd',this.async(), config.parallelProjects, true
+    run gitScripts + 'GIT_STASH_POP.cmd',this.async(), config.parallelProjects, true
   grunt.registerTask 'pf', "GIT PULL UPSTREAM MASTER, GIT PULL --REBASE, RUN ME FIRST for ProductFulfillment", () ->
     proj = 'ProductFulfillment'
     grunt.task.run('rb')
@@ -152,7 +154,7 @@ module.exports = (grunt) ->
       cmdProcess.stdout.write "\ndata: " + chunk
 
     cmdProcess.on "exit", (code) ->
-      msg = '\n' + this.proj + " " + script + " " + 'COMPLETED\n-----------------------------------\n'
+      msg = '\n' + if this.proj then this.proj else '' + " " + script.replace(otScripts,'').replace(gitScripts,'') + " " + 'COMPLETED\n-----------------------------------\n'
       grunt.log.write msg
       growlMsg(msg)
       callback(null, "")

@@ -1,5 +1,5 @@
 @ECHO OFF
 set proj=%1
-PUSHD "%~dp0..\%proj%"
+PUSHD "%~dp0..\..\..\%proj%"
 git stash pop
 POPD
