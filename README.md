@@ -89,6 +89,8 @@ You rebooted you box and you want to start everything up
 
 Full Command Reference
 -----------------------
+| grunt command | what it does  |
+| ------------- |:-------------:|
 | `grunt pullmaster` | `git submodule update`, `git pull upstream master` for all projects |
 | `grunt runmefirst` | `run-me-first.bat` |
 | `grunt sql` | rebuilds Database for all projects |
