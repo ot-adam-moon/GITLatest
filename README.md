@@ -2,6 +2,9 @@ OT Development Environment Setup
 ============================
 
 * Create root projects directory. Example c:\projects\
+* Provided is a OT-Setup.zip file
+* unzip OT-Setup files in {Projects Directory}
+      
 
 git setup
 ---------
@@ -30,7 +33,6 @@ Install Console2
 * Unzip download to your choice directory
 * Open Console2.exe as Administrator
 * Pin Console2 to TaskBar
-* 
 
 Powershell
 -----------------------------
@@ -59,7 +61,7 @@ Starting from scratch
 | grunt command | what it does  |
 | ------------- |:-------------:|
 | `grunt clone` | clone all necessary repositories from GitHub into {Projects Directory} |
-| `grunt rmf` | will run run-me-first.bat for all projects |
+| `grunt runmefirst` | will run run-me-first.bat for all projects |
 | `grunt certs` | will install all necessary certs for development needs |
    
 Have all the code but want to make sure you are running latest code
@@ -74,7 +76,7 @@ You just want to pull latest code
 
 | grunt command | what it does  |
 | ------------- |:-------------:|
-| `grunt pum` | will run `git submodule update`, `git pull upstream master` for each project |
+| `grunt pullmaster` | will run `git submodule update`, `git pull upstream master` for each project |
 
 You rebooted you box and you want to start everything up
 --------------------------------------------------------
@@ -85,26 +87,36 @@ You rebooted you box and you want to start everything up
 
 
 
-
-
-| `grunt pum` | `git submodule update`, `git pull upstream master` |
-| `grunt rmf` | `run-me-first.bat` |
-| `grunt rb` | `rake bootstrap` |
-| `grunt rakebootstrap` | `rake bootstrap` |
-| `grunt rsql` | `rake sql` |
-| `grunt rakesql` | `rake sql` |
-| `grunt sql` | `rebuild-db.bat` |
-| `grunt webstart` | `webutil.bat all` |
-| `grunt webstop` | `webutil.bat stop` |
+Full Command Reference
+-----------------------
+| `grunt pullmaster` | `git submodule update`, `git pull upstream master` for all projects |
+| `grunt runmefirst` | `run-me-first.bat` |
+| `grunt sql` | rebuilds Database for all projects |
+| `grunt webstart` | Starts all webs|
+| `grunt webstop` | Stops all webs |
 | `grunt svcStart` | Starts up all necessary windows services |
 | `grunt svcUninstall` | Uninstall all window services installed previously |
 | `grunt svcInstall` | Install all necessary windows services |
 | `grunt up` | starts all webs and window services necessary |
 | `grunt certs` | installs necessary certificates needed |
 
+To Run a Task for just one Application
+--------------------------------------
 
+Ex: 
+   `grunt pullmaster --proj spl`
+   `grunt pullmaster --proj pf`
+   `grunt pullmaster --proj es`
+   `grunt pullmaster --proj ot`
+   `grunt pullmaster --proj cf`
 
-
+project reference list
+----------------------
+spl - SpendOnLife
+pf  - ProductFulfillment
+es  - EnterpriseServices
+ot  - OneTechnologies.Framework
+cf  - CustomerFiltering
 
 
 SpendOnLife
@@ -112,8 +124,9 @@ SpendOnLife
 
 Steps to take for new Marketing Project
 
-* have Powershell tab open from Console2 to `GITLatest` directory
-* open second Powershell window and `cd SpendOnLife`
+* open Powershell tab inside `Console2`, `cd` to `GITLatest` directory `Use for getting updated code for all projects, manages starting and stopping webs and windows services`
+* open `git bash` tab in `Console2 `, `cd` to `SpendOnLife` directory `Use for all git commands for SpendOnLife`
+
 
  
 
