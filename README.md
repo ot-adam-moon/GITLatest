@@ -96,9 +96,9 @@ Full Command Reference
 | `grunt sql` | rebuilds Database for all projects |
 | `grunt webstart` | Starts all webs|
 | `grunt webstop` | Stops all webs |
-| `grunt svcStart` | Starts up all necessary windows services |
-| `grunt svcUninstall` | Uninstall all window services installed previously |
-| `grunt svcInstall` | Install all necessary windows services |
+| `grunt svcstart` | Starts up all necessary windows services |
+| `grunt svcuninstall` | Uninstall all window services installed previously |
+| `grunt svcinstall` | Install all necessary windows services |
 | `grunt up` | starts all webs and window services necessary |
 | `grunt certs` | installs necessary certificates needed |
 
