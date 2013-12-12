@@ -26,19 +26,25 @@ module.exports = (grunt) ->
     run otScripts + 'INSTALL_CERTS.cmd',this.async(), false
   grunt.registerTask 'svcu','Services Uninstall', () ->
     run otScripts + 'SVC_UNINSTALL.cmd',this.async(), config.svcProjects, true
-  grunt.registerTask 'svcuninstall','Services Uninstall', () ->
+  grunt.registerTask 'svcUninstall','Services Uninstall', () ->
     run otScripts + 'SVC_UNINSTALL.cmd',this.async(), config.svcProjects, true
   grunt.registerTask 'svci', 'Services Install', () ->
+    run otScripts + 'SVC_INSTALL.cmd',this.async(), config.svcProjects, true
+  grunt.registerTask 'svcInstall', 'Services Install', () ->
     run otScripts + 'SVC_INSTALL.cmd',this.async(), config.svcProjects, true
   grunt.registerTask 'svcinstall', 'Services Install', () ->
     run otScripts + 'SVC_INSTALL.cmd',this.async(), config.svcProjects, true
   grunt.registerTask 'web','WebUtil All', () ->
     run otScripts + 'WEBUTIL.cmd ',this.async(), config.webProjects, false
-  grunt.registerTask 'webstop', 'WebUtil Stop',() ->
+  grunt.registerTask 'webStart','WebUtil All', () ->
+    run otScripts + 'WEBUTIL.cmd ',this.async(), config.webProjects, false
+  grunt.registerTask 'webStop', 'WebUtil Stop',() ->
     run otScripts + 'WEBUTIL_STOP.cmd ',this.async(), config.webProjects, false
   grunt.registerTask 'del', () ->
     run otScripts + 'DELETE_ALL.cmd ',this.async(), config.allProjects, true
   grunt.registerTask 'svc', 'SvcUtil Start', () ->
+    run otScripts + 'SVCUTIL.cmd',this.async(), config.svcProjects, false
+  grunt.registerTask 'svcStart', 'SvcUtil Start', () ->
     run otScripts + 'SVCUTIL.cmd',this.async(), config.svcProjects, false
   grunt.registerTask 'com', 'GIT CHECKOUT MASTER', () ->
     run gitScripts + 'GIT_CHECKOUT_MASTER.cmd',this.async(), true
