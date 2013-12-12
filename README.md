@@ -73,15 +73,38 @@ GITLatest
      `grunt clone` - Will clone all necessary repositories from GitHub into {Projects Directory} 
         
    * 
-   
-Command List
-------------
+Starting from scratch
+---------------------
 
 | grunt command | what it does  |
 | ------------- |:-------------:|
-| `grunt` | `git submodule update, git pull upstream master` |
+| `grunt clone` | clone all necessary repositories from GitHub into {Projects Directory} |
+| `grunt rmf` | will run run-me-first.bat for all projects |
+| `grunt certs` | will install all necessary certs for development needs |
+   
+Have all the code but want to make sure you are running latest code
+-------------------------------------------------------------------
 
+| grunt command | what it does  |
+| ------------- |:-------------:|
 | `grunt update` | pulls latest from master for each repository, refreshes services, webs, and database, reinstalls certificates |
+
+You just want to pull latest code
+---------------------------------
+
+| grunt command | what it does  |
+| ------------- |:-------------:|
+| `grunt pum` | will run `git submodule update`, `git pull upstream master` for each project |
+
+You rebooted you box and you want to start everything up
+--------------------------------------------------------
+
+| grunt command | what it does  |
+| ------------- |:-------------:|
+| `grunt up` | `webutil.bat all`, `svcutil.bat start` for each project|
+
+
+
 | `grunt pum` | `git submodule update`, `git pull upstream master` |
 | `grunt rmf` | `run-me-first.bat` |
 | `grunt rb` | `rake bootstrap` |
@@ -98,31 +121,8 @@ Command List
 | `grunt certs` | `installs necessary certs with INSTALL_CERTS.cmd` |
 
 
-Run a task for all projects and current branch
-----------------------------------------------
-
- grunt {task}
-
-Run a task for one project and current branch
----------------------------------------------
-
- grunt {task} --proj {projectName}
-
-Run a task for all projects but for custom branch
--------------------------------------------------
-
- grunt {task} --br ReleaseXXXXX
-
-Run a task for one project and custom branch
---------------------------------------------
-
- grunt {task} --proj {projectName} --br ReleaseXXXXX
 
 
-Rebooted my box and want everything started up
-----------------------------------------------
-* cd Projects\GITLatest
-* grunt up
 
 
 SpendOnLife
