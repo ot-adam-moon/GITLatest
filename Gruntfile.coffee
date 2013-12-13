@@ -73,11 +73,11 @@ module.exports = (grunt) ->
   grunt.registerTask 'resethard', 'GIT RESET HEAD --HARD', () ->
     run gitScripts + 'GIT_RESET_HARD.cmd',this.async(), config.allProjects, true
   grunt.registerTask 'rmf', 'RUN_ME_FIRST.BAT',() ->
-    run otScripts + 'RUN_ME_FIRST.cmd',this.async(), config.allProjects, false
+    run otScripts + 'RUN_ME_FIRST.cmd',this.async(), config.allProjects, true
   grunt.registerTask 'runmefirst', 'RUN_ME_FIRST.BAT',() ->
-    run otScripts + 'RUN_ME_FIRST.cmd',this.async(), config.allProjects, false
+    run otScripts + 'RUN_ME_FIRST.cmd',this.async(), config.allProjects, true
   grunt.registerTask 'rb', 'RAKE BOOTSTRAP',() ->
-    run otScripts + 'RAKE_BOOTSTRAP.cmd',this.async(), config.allProjects, false
+    run otScripts + 'RAKE_BOOTSTRAP.cmd',this.async(), config.allProjects, true
   grunt.registerTask 'rakebootstrap', 'RAKE BOOTSTRAP',() ->
     run otScripts + 'RAKE_BOOTSTRAP.cmd',this.async(), config.allProjects, true
   grunt.registerTask 'gui', 'GIT GUI',() ->
