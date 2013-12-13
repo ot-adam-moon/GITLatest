@@ -65,10 +65,21 @@ Starting from scratch
 | grunt command | what it does  |
 | ------------- |:-------------:|
 | `grunt clone` | clone all necessary repositories from GitHub into {Projects Directory} |
-| `git remote add origin git@github.com:{github-username}/SpendOnLife.git` | clone all necessary repositories from GitHub into {Projects Directory} |
 | `grunt runmefirst` | will run run-me-first.bat for all projects |
-| `grunt up` | will make sure all webs and Windows services are started, run `grunt webstart` and `grunt svcstart`|
+| `grunt svcstart` | will start all Windows services |
+| `grunt webstart` | will start all webs you need |
 | `grunt certs` | will install all necessary certs for development needs |
+
+
+      Setup SpendOnLife
+      -----------------
+      
+      * open Powershell tab inside `Console2`, `cd` to `GITLatest` directory `Use for getting updated code for all projects, manages starting and stopping webs and windows services`
+      * open `git bash` tab in `Console2 `, `cd` to `SpendOnLife` directory `Use for all git commands for SpendOnLife`
+      * login to gihub.com, go to `https://github.com/OneTechLP/SpendOnLife`, click on the Fork button, allow to finish forking
+      * in the git bash tab run the following git command to add a remote: `git remote add origin git@github.com:{githubUsername}/SpendOnLife.git `
+
+
    
 Have all the code but want to make sure you are running latest code
 -------------------------------------------------------------------
@@ -127,13 +138,6 @@ ot  - OneTechnologies.Framework
 cf  - CustomerFiltering
 
 
-SpendOnLife
------------
-
-Steps to take for new Marketing Project
-
-* open Powershell tab inside `Console2`, `cd` to `GITLatest` directory `Use for getting updated code for all projects, manages starting and stopping webs and windows services`
-* open `git bash` tab in `Console2 `, `cd` to `SpendOnLife` directory `Use for all git commands for SpendOnLife`
 
 
  
