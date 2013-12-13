@@ -66,6 +66,7 @@ Starting from scratch
 | ------------- |:-------------:|
 | `grunt clone` | clone all necessary repositories from GitHub into {Projects Directory} |
 | `grunt runmefirst` | will run run-me-first.bat for all projects |
+| `grunt up` | will make sure all webs and Windows services are started, run `grunt webstart` and `grunt svcstart`|
 | `grunt certs` | will install all necessary certs for development needs |
    
 Have all the code but want to make sure you are running latest code
