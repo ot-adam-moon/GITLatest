@@ -65,6 +65,7 @@ Starting from scratch
 | grunt command | what it does  |
 | ------------- |:-------------:|
 | `grunt clone` | clone all necessary repositories from GitHub into {Projects Directory} |
+| `git remote add origin git@github.com:{github-username}/SpendOnLife.git` | clone all necessary repositories from GitHub into {Projects Directory} |
 | `grunt runmefirst` | will run run-me-first.bat for all projects |
 | `grunt up` | will make sure all webs and Windows services are started, run `grunt webstart` and `grunt svcstart`|
 | `grunt certs` | will install all necessary certs for development needs |
