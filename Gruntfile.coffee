@@ -26,11 +26,9 @@ module.exports = (grunt) ->
     run otScripts + 'INSTALL_CERTS.cmd',this.async(), false
   grunt.registerTask 'svcu','Services Uninstall', () ->
     run otScripts + 'SVC_UNINSTALL.cmd',this.async(), config.svcProjects, true
-  grunt.registerTask 'svcUninstall','Services Uninstall', () ->
+  grunt.registerTask 'svcuninstall','Services Uninstall', () ->
     run otScripts + 'SVC_UNINSTALL.cmd',this.async(), config.svcProjects, true
   grunt.registerTask 'svci', 'Services Install', () ->
-    run otScripts + 'SVC_INSTALL.cmd',this.async(), config.svcProjects, true
-  grunt.registerTask 'svcinstall', 'Services Install', () ->
     run otScripts + 'SVC_INSTALL.cmd',this.async(), config.svcProjects, true
   grunt.registerTask 'svcinstall', 'Services Install', () ->
     run otScripts + 'SVC_INSTALL.cmd',this.async(), config.svcProjects, true
@@ -75,29 +73,25 @@ module.exports = (grunt) ->
   grunt.registerTask 'resethard', 'GIT RESET HEAD --HARD', () ->
     run gitScripts + 'GIT_RESET_HARD.cmd',this.async(), config.allProjects, true
   grunt.registerTask 'rmf', 'RUN_ME_FIRST.BAT',() ->
-    run otScripts + 'RUN_ME_FIRST.cmd',this.async(), config.parallelProjects, false
+    run otScripts + 'RUN_ME_FIRST.cmd',this.async(), config.allProjects, false
   grunt.registerTask 'runmefirst', 'RUN_ME_FIRST.BAT',() ->
-    run otScripts + 'RUN_ME_FIRST.cmd',this.async(), config.parallelProjects, false
+    run otScripts + 'RUN_ME_FIRST.cmd',this.async(), config.allProjects, false
   grunt.registerTask 'rb', 'RAKE BOOTSTRAP',() ->
-    run otScripts + 'RAKE_BOOTSTRAP.cmd',this.async(), config.parallelProjects, false
+    run otScripts + 'RAKE_BOOTSTRAP.cmd',this.async(), config.allProjects, false
   grunt.registerTask 'rakebootstrap', 'RAKE BOOTSTRAP',() ->
     run otScripts + 'RAKE_BOOTSTRAP.cmd',this.async(), config.allProjects, true
   grunt.registerTask 'gui', 'GIT GUI',() ->
     run gitScripts + 'GIT_GUI.cmd',this.async(), config.allProjects
   grunt.registerTask 'rsql', 'RAKE SQL', () ->
-    run otScripts + 'RAKE_SQL.cmd',this.async(), config.parallelProjects, true
+    run otScripts + 'RAKE_SQL.cmd',this.async(), config.dbProjects, true
   grunt.registerTask 'rakesql', 'RAKE SQL', () ->
-    run otScripts + 'RAKE_SQL.cmd',this.async(), config.parallelProjects, true
-  grunt.registerTask 'stash', 'RAKE SQL', () ->
-    run gitScripts + 'GIT_STASH.cmd',this.async(), config.parallelProjects, true
-  grunt.registerTask 'stashpop', 'RAKE SQL', () ->
-    run gitScripts + 'GIT_STASH_POP.cmd',this.async(), config.parallelProjects, true
+    run otScripts + 'RAKE_SQL.cmd',this.async(), config.dbProjects, true
   grunt.registerTask 'pf', "GIT PULL UPSTREAM MASTER, GIT PULL --REBASE, RUN ME FIRST for ProductFulfillment", () ->
     proj = 'ProductFulfillment'
     grunt.task.run('rb')
 
   # Make task shortcuts
-  grunt.registerTask 'fromscratch', ['webstop','svcu','del','clone','rmf','pf','certs']
+  grunt.registerTask 'fromscratch', ['webstop','svcu','del','clone','rmf','certs']
   grunt.registerTask 'default', ['pum']
   grunt.registerTask 'update', ['pum','rmf','pf','certs']
   grunt.registerTask 'up', ['web','svc']
