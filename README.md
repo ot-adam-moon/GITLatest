@@ -13,11 +13,11 @@ git setup
 
 Install Nodejs
 --------------
-* Install [node.js](http://nodejs.org/)
+* Install [node.js](http://nodejs.org/) or copy install file from nodejs folder in OT-Setup folder
 
 Install Ruby
 ------------
-[Ruby for Windows](http://rubyinstaller.org/)
+[Ruby for Windows](http://rubyinstaller.org/) or copy install file from ruby folder in OT-Setup folder
 
 * During the installer select the checkbox to add bin directory to PATH Environment Variable
 * After installing Ruby make sure to reopen powershell window because PATH Environment change
@@ -30,22 +30,26 @@ Install Console2
 
 [Console2 download] (http://sourceforge.net/projects/console/files/)
 
-* Unzip download to your choice directory
+* Copy Console2 folder from OT-Setup folder to c:\Program Files\
 * Open Console2.exe as Administrator
-* Pin Console2 to TaskBar
+* Click Edit > Settings ... in Menu
+* Make sure under the tab settings you have a tab created for powershell.exe and gitbash
 
 Powershell
 -----------------------------
    NOTE: If you edit the PATH Environment Variable in the task below, you will need to restart 
 
-* Open PowerShell
-* Run `Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Confirm`
+* Open 
+* Run `Set-ExecutionPolicy Unrestricted -Scope CurrentUser -Confirm`
 
+Install posh-git
+----------------
+* from `posh-git` folder in `OT-Setup` run `install.ps1` 
 
 Initial Pre Setup
 -------------
 * Inside {ProjectsRoot} Directory create a directory called `certs`
-* Copy certificate files from certs.zip provided into `certs` directory
+* Copy`certs` directory from OT-Setup folder
 * Copy `SpendOnLife-v15.bak` and `Tracking-v2.bak` to `C:\Program Files\Microsoft SQL Server\MSSQL{NUMBER}.MSSQLSERVER\MSSQL\Backup`
 
 
