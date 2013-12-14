@@ -13,13 +13,12 @@ git setup
 
 Install Nodejs
 --------------
-* Install [node.js](http://nodejs.org/) or copy install file from `nodejs` folder in `OT-Setup` folder and execute installer
+* execute installer in `nodejs` folder in `OT-Setup` folder
 
 Install Ruby
 ------------
-[Ruby for Windows](http://rubyinstaller.org/) or copy install file from `ruby` folder in `OT-Setup` folder and execute installer
-
-* During the installer select the checkbox to add bin directory to PATH Environment Variable
+* Execute installer file from `ruby` folder in `OT-Setup` folder
+* During the install select the checkbox to add bin directory to PATH Environment Variable
 * After installing Ruby make sure to reopen powershell window because PATH Environment change
 
 REBOOT BOX AT THIS POINT
