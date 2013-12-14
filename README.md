@@ -74,10 +74,10 @@ Starting from scratch
 Setup SpendOnLife
 -----------------
 
-      * open Powershell tab inside `Console2`, `cd` to `GITLatest` directory `Use for getting updated code for all projects, manages starting and stopping webs and windows services`
-      * open `git bash` tab in `Console2 `, `cd` to `SpendOnLife` directory `Use for all git commands for SpendOnLife`
-      * login to gihub.com, go to `https://github.com/OneTechLP/SpendOnLife`, click on the Fork button, allow to finish forking
-      * in the git bash tab run the following git command to add a remote: `git remote add origin git@github.com:{githubUsername}/SpendOnLife.git `
+* open Powershell tab inside `Console2`, `cd` to `GITLatest` directory `Use for getting updated code for all projects, manages starting and stopping webs and windows services`
+* open `git bash` tab in `Console2 `, `cd` to `SpendOnLife` directory `Use for all git commands for SpendOnLife`
+* login to gihub.com, go to `https://github.com/OneTechLP/SpendOnLife`, click on the Fork button, allow to finish forking
+* in the git bash tab run the following git command to add a remote: `git remote add origin git@github.com:{githubUsername}/SpendOnLife.git `
 
 
    
