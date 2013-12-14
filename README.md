@@ -131,11 +131,11 @@ Ex:
 
 project reference list
 ----------------------
-spl - SpendOnLife
-pf  - ProductFulfillment
-es  - EnterpriseServices
-ot  - OneTechnologies.Framework
-cf  - CustomerFiltering
+      * spl - SpendOnLife
+      * pf  - ProductFulfillment
+      * es  - EnterpriseServices
+      * ot  - OneTechnologies.Framework
+      * cf  - CustomerFiltering
 
 
 
