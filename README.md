@@ -107,7 +107,7 @@ You just want to pull latest code
 | ------------- |:-------------:|
 | `grunt pullmaster` | will run `git submodule update`, `git pull upstream master` for each project |
 
-You rebooted you box and you want to start everything up
+You rebooted your computer and you want to start everything up
 --------------------------------------------------------
 
 | grunt command | what it does  |
