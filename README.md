@@ -32,12 +32,11 @@ Install Console2
 * Open Console2.exe as Administrator
 * Click Edit > Settings ... in Menu
 * Make sure under the tab settings you have added the following tabs
-*     
-`Powershell` -> Shell: `%SystemRoot%\system32\WindowsPowerShell\v1.0\powershell.exe`
-                Startup dir: `{ProjectsRoot}\GITLatest\`
-
-`GitBash`    -> Shell: `C:\Windows\SysWOW64\cmd.exe /c ""C:\Program Files (x86)\Git\bin\sh.exe" --login -i`
-                Startup dir: `{ProjectsRoot}\SpendOnLife\`
+      *`Powershell` -> Shell: `%SystemRoot%\system32\WindowsPowerShell\v1.0\powershell.exe`
+                      Startup dir: `{ProjectsRoot}\GITLatest\`
+      
+      *`GitBash`    -> Shell: `C:\Windows\SysWOW64\cmd.exe /c ""C:\Program Files (x86)\Git\bin\sh.exe" --login -i`
+                      Startup dir: `{ProjectsRoot}\SpendOnLife\`
 
       
 Powershell Setup with GIT
