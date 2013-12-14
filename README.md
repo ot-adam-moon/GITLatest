@@ -2,8 +2,8 @@ OT Development Environment Setup
 ============================
 
 * Create root projects directory. Example c:\projects\
-* Provided is an OT-Setup.zip file
-* unzip OT-Setup files in {Projects Directory}
+* Provided is an `OT-Setup.zip` file
+* unzip `OT-Setup` files in {Projects Directory}
       
 
 git setup
@@ -13,11 +13,11 @@ git setup
 
 Install Nodejs
 --------------
-* Install [node.js](http://nodejs.org/) or copy install file from nodejs folder in OT-Setup folder and execute installer
+* Install [node.js](http://nodejs.org/) or copy install file from `nodejs` folder in `OT-Setup` folder and execute installer
 
 Install Ruby
 ------------
-[Ruby for Windows](http://rubyinstaller.org/) or copy install file from ruby folder in OT-Setup folder and execute installer
+[Ruby for Windows](http://rubyinstaller.org/) or copy install file from `ruby` folder in `OT-Setup` folder and execute installer
 
 * During the installer select the checkbox to add bin directory to PATH Environment Variable
 * After installing Ruby make sure to reopen powershell window because PATH Environment change
