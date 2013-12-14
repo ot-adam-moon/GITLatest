@@ -28,9 +28,7 @@ REBOOT BOX AT THIS POINT
 Install Console2
 ----------------
 
-[Console2 download] (http://sourceforge.net/projects/console/files/)
-
-* Copy Console2 folder from OT-Setup folder to c:\Program Files\
+* Copy `Console2` folder from `OT-Setup` folder to c:\Program Files\
 * Open Console2.exe as Administrator
 * Click Edit > Settings ... in Menu
 * Make sure under the tab settings you have a tab created for powershell.exe and gitbash
@@ -76,6 +74,15 @@ Setup SpendOnLife
 * open `git bash` tab in `Console2 `, `cd` to `SpendOnLife` directory `Use for all git commands for SpendOnLife`
 * login to gihub.com, go to `https://github.com/OneTechLP/SpendOnLife`, click on the Fork button, allow to finish forking
 * in the git bash tab run the following git command to add a remote: `git remote add origin git@github.com:{githubUsername}/SpendOnLife.git `
+* 
+
+Troubleshooting Errors during Enrollment Path
+---------------------------------------------
+* inside Powershell tab
+* `cd` to `OT-Setup\SqlReportManager`
+* run -> `startIISExpressWeb.bat`
+* open chrome browser and go to `http://localhost:6611`
+
 
 
    
