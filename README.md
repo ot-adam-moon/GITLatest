@@ -107,7 +107,7 @@ Pull latest code and make sure latest code is running
 | `grunt up` | will attempt to start all Windows services and webs|
 
 
-You rebooted your computer and you want to start everything up or you to ensure all services and webs are started
+Rebooted your computer and need to start everything up
 --------------------------------------------------------
 
 | grunt command | what it does  |
