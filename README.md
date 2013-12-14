@@ -46,21 +46,19 @@ Install posh-git
 ----------------
 * from `posh-git` folder in `OT-Setup` run `install.ps1` 
 
-Initial Pre Setup
+Initial Setup
 -------------
-* Inside {ProjectsRoot} Directory create a directory called `certs`
-* Copy`certs` directory from OT-Setup folder
+* Copy`certs` directory from OT-Setup folder and paste into {ProjectsDirectory}
 * Copy `SpendOnLife-v15.bak` and `Tracking-v2.bak` to `C:\Program Files\Microsoft SQL Server\MSSQL{NUMBER}.MSSQLSERVER\MSSQL\Backup`
 
-
-GITLatest
+Setup GITLatest
 -------------
 * `cd ProjectsRootDirectoryYouChose`
 * Run `git clone git@github.com:ot-adam-moon/GITLatest.git`
 * `npm install`
 
-Starting from scratch
----------------------
+Ready to Pull Application Code and Get Started
+----------------------------------------------
 
 | grunt command | what it does  |
 | ------------- |:-------------:|
