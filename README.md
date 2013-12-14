@@ -2,7 +2,7 @@ OT Development Environment Setup
 ============================
 
 * Create root projects directory. Example c:\projects\
-* Provided is a OT-Setup.zip file
+* Provided is an OT-Setup.zip file
 * unzip OT-Setup files in {Projects Directory}
       
 
@@ -13,11 +13,11 @@ git setup
 
 Install Nodejs
 --------------
-* Install [node.js](http://nodejs.org/) or copy install file from nodejs folder in OT-Setup folder
+* Install [node.js](http://nodejs.org/) or copy install file from nodejs folder in OT-Setup folder and execute installer
 
 Install Ruby
 ------------
-[Ruby for Windows](http://rubyinstaller.org/) or copy install file from ruby folder in OT-Setup folder
+[Ruby for Windows](http://rubyinstaller.org/) or copy install file from ruby folder in OT-Setup folder and execute installer
 
 * During the installer select the checkbox to add bin directory to PATH Environment Variable
 * After installing Ruby make sure to reopen powershell window because PATH Environment change
@@ -39,8 +39,8 @@ Powershell
 -----------------------------
    NOTE: If you edit the PATH Environment Variable in the task below, you will need to restart 
 
-* Open 
-* Run `Set-ExecutionPolicy Unrestricted -Scope CurrentUser -Confirm`
+* Open Powershell Tab in Console2
+* Run Command -> `Set-ExecutionPolicy Unrestricted -Scope CurrentUser -Confirm`
 
 Install posh-git
 ----------------
@@ -71,9 +71,9 @@ Starting from scratch
 | `grunt certs` | will install all necessary certs for development needs |
 
 
-      Setup SpendOnLife
-      -----------------
-      
+Setup SpendOnLife
+-----------------
+
       * open Powershell tab inside `Console2`, `cd` to `GITLatest` directory `Use for getting updated code for all projects, manages starting and stopping webs and windows services`
       * open `git bash` tab in `Console2 `, `cd` to `SpendOnLife` directory `Use for all git commands for SpendOnLife`
       * login to gihub.com, go to `https://github.com/OneTechLP/SpendOnLife`, click on the Fork button, allow to finish forking
