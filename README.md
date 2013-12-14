@@ -59,9 +59,9 @@ Initial Setup
 
 Setup GITLatest
 -------------
-* `cd ProjectsRootDirectoryYouChose`
-* Run -> `git clone git@github.com:ot-adam-moon/GITLatest.git`
-* Run -> `npm install`
+* `cd {ProjectDirectory}`
+* Run `git clone git@github.com:ot-adam-moon/GITLatest.git`
+* Run `npm install`
 
 Ready to Pull Application Code and Get Started
 ----------------------------------------------
@@ -82,7 +82,6 @@ Setup SpendOnLife
 * open `git bash` tab in `Console2 `, `cd` to `SpendOnLife` directory `Use for all git commands for SpendOnLife`
 * login to gihub.com, go to `https://github.com/OneTechLP/SpendOnLife`, click on the Fork button, allow to finish forking
 * in the git bash tab run the following git command to add a remote: `git remote add origin git@github.com:{githubUsername}/SpendOnLife.git `
-* 
 
 Troubleshooting Errors during Enrollment Path
 ---------------------------------------------
