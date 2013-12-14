@@ -86,8 +86,8 @@ Troubleshooting Errors during Enrollment Path
 
 
    
-Have all the code but want to make sure you are running latest code
--------------------------------------------------------------------
+Want to make sure you are running latest code
+---------------------------------------------
 
 | grunt command | what it does  |
 | ------------- |:-------------:|
