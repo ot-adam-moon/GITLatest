@@ -51,6 +51,7 @@ Install posh-git
 * in same `Powershell` tab in `Console2`
 * `cd` to `posh-git` folder in `OT-Setup` folder
 * run `.\install.ps1` 
+* Close `Console2` and reopen as Administrator
 
 Initial Setup
 -------------
