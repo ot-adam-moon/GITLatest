@@ -77,13 +77,14 @@ Ready to Pull Application Code and Get Started
 | `grunt certs` | will install all necessary certs for development needs |
 
 
-Setup Personal Git Remote for SpendOnLife
+Setup SpendOnLife
 -----------------
 
-* open Powershell tab inside `Console2`, `cd` to `GITLatest` directory `Use for getting updated code for all projects, manages starting and stopping webs and windows services`
-* open `git bash` tab in `Console2 `, `cd` to `SpendOnLife` directory `Use for all git commands for SpendOnLife`
 * login to gihub.com, go to `https://github.com/OneTechLP/SpendOnLife`, click on the Fork button, allow to finish forking
-* in the git bash tab run the following git command to add a remote: `git remote add origin git@github.com:{githubUsername}/SpendOnLife.git `
+* open `gitbash` tab in `Console2`
+* in the `gitbash` tab run the following git command to add a remote: 
+      `git remote add origin git@github.com:{githubUsername}/SpendOnLife.git `
+* Use `gitbash tab` for all git commands need to commit code for SpendOnLife Marketing Projects`
 
 Troubleshooting Errors during Enrollment Path
 ---------------------------------------------
@@ -93,14 +94,11 @@ Troubleshooting Errors during Enrollment Path
 * open chrome browser and go to `http://localhost:6611`
 
 
+* Use `GITLatest` Powershell tab for getting updated code for all projects, starting and stopping webs and windows services
+-------
 
-   
-Want to make sure you are running latest code
----------------------------------------------
+Common Scenarios for using `GITLatest`
 
-| grunt command | what it does  |
-| ------------- |:-------------:|
-| `grunt update` | pulls latest from master for each repository, refreshes services, webs, and database, reinstalls certificates |
 
 You just want to pull latest code
 ---------------------------------
@@ -109,12 +107,20 @@ You just want to pull latest code
 | ------------- |:-------------:|
 | `grunt pullmaster` | will run `git submodule update`, `git pull upstream master` for each project |
 
-You rebooted your computer and you want to start everything up
+Want to make sure you are running latest code
+---------------------------------------------
+
+| grunt command | what it does  |
+| ------------- |:-------------:|
+| `grunt runmefirst` | will recompile all code and rebuild databases for all projects |
+| `grunt up` | will attempt to start all Windows services and webs|
+
+You rebooted your computer and you want to start everything up or you to ensure all services and webs are started
 --------------------------------------------------------
 
 | grunt command | what it does  |
 | ------------- |:-------------:|
-| `grunt up` | `webutil.bat all`, `svcutil.bat start` for each project|
+| `grunt up` | will attempt to start all Windows services and webs|
 
 
 
