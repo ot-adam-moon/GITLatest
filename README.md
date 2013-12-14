@@ -31,11 +31,11 @@ Install Console2
 * Copy `Console2` folder from `OT-Setup` folder to c:\Program Files\
 * Open Console2.exe as Administrator
 * Click Edit > Settings ... in Menu
-* Make sure under the tab settings you have added the following tabs
+* Add the following tabs
 -------------
-* `Powershell` -> Shell: `%SystemRoot%\system32\WindowsPowerShell\v1.0\powershell.exe`
+* `Powershell`  Shell: `%SystemRoot%\system32\WindowsPowerShell\v1.0\powershell.exe`
                 Startup dir: `{ProjectsRoot}\GITLatest\`
-* `GitBash`    -> Shell: `C:\Windows\SysWOW64\cmd.exe /c ""C:\Program Files (x86)\Git\bin\sh.exe" --login -i`
+* `GitBash`     Shell: `C:\Windows\SysWOW64\cmd.exe /c "C:\Program Files (x86)\Git\bin\sh.exe" --login -i`
                 Startup dir: `{ProjectsRoot}\SpendOnLife\`
 
       
