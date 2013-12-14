@@ -98,8 +98,7 @@ Troubleshooting Errors during Enrollment Path
 
 Common Scenarios for using `GITLatest`
 
-
-You just want to pull latest code and make sure latest code is running
+Pull latest code and make sure latest code is running
 ---------------------------------
 
 | grunt command | what it does  |
