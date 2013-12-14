@@ -54,8 +54,8 @@ Initial Setup
 Setup GITLatest
 -------------
 * `cd ProjectsRootDirectoryYouChose`
-* Run `git clone git@github.com:ot-adam-moon/GITLatest.git`
-* `npm install`
+* Run -> `git clone git@github.com:ot-adam-moon/GITLatest.git`
+* Run -> `npm install`
 
 Ready to Pull Application Code and Get Started
 ----------------------------------------------
