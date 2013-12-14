@@ -55,7 +55,6 @@ Install posh-git
 Initial Setup
 -------------
 * Copy`certs` directory from OT-Setup folder and paste into {ProjectsDirectory}
-* Copy `SpendOnLife-v15.bak` and `Tracking-v2.bak` to `C:\Program Files\Microsoft SQL Server\MSSQL{NUMBER}.MSSQLSERVER\MSSQL\Backup`
 
 Setup GITLatest
 -------------
@@ -66,16 +65,19 @@ Setup GITLatest
 Ready to Pull Application Code and Get Started
 ----------------------------------------------
 
-| grunt command | what it does  |
+| do this | what it does  |
 | ------------- |:-------------:|
 | `grunt clone` | clone all necessary repositories from GitHub into {Projects Directory} |
+
+| Copy `SpendOnLife-v15.bak` and `Tracking-v2.bak` located in `OT-Setup\DB\` to `C:\Program Files\Microsoft SQL Server\MSSQL{NUMBER}.MSSQLSERVER\MSSQL\Backup`| will be used for restoring DBs in `grunt runmefirst` step below |
+| Copy `sql.build` located in `OT-Setup\` to `{ProjectsRoot}\SpendOnLife\SpendOnLife\`| |
 | `grunt runmefirst` | will run run-me-first.bat for all projects |
 | `grunt svcstart` | will start all Windows services |
 | `grunt webstart` | will start all webs you need |
 | `grunt certs` | will install all necessary certs for development needs |
 
 
-Setup SpendOnLife
+Setup Personal Git Remote for SpendOnLife
 -----------------
 
 * open Powershell tab inside `Console2`, `cd` to `GITLatest` directory `Use for getting updated code for all projects, manages starting and stopping webs and windows services`
