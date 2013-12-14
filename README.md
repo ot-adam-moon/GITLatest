@@ -3,7 +3,7 @@ OT Development Environment Setup
 
 * Create root projects directory. Example c:\projects\
 * Provided is an `OT-Setup.zip` file
-* unzip `OT-Setup` files in {Projects Directory}
+* unzip `OT-Setup` files in {ProjectsRoot}
       
 
 git setup
@@ -58,7 +58,7 @@ Initial Setup
 
 Setup GITLatest
 -------------
-* `cd {ProjectDirectory}`
+* `cd {ProjectsRoot}`
 * Run `git clone git@github.com:ot-adam-moon/GITLatest.git`
 * Run `npm install`
 
@@ -67,7 +67,7 @@ Ready to Pull Application Code and Get Started
 
 | do this | what it does  |
 | ------------- |:-------------:|
-| `grunt clone` | clone all necessary repositories from GitHub into `{Projects Directory}` |
+| `grunt clone` | clone all necessary repositories from GitHub into `{ProjectsRoot}` |
 | Copy `SpendOnLife-v15.bak` and `Tracking-v2.bak` located in `OT-Setup\DB\` to `C:\Program Files\Microsoft SQL Server\MSSQL{NUMBER}.MSSQLSERVER\MSSQL\Backup`| will be used for restoring DBs in `grunt runmefirst` step below |
 | Copy `sql.build` located in `OT-Setup\` to `{ProjectsRoot}\SpendOnLife\SpendOnLife\`| will be used for restoring DBs in `grunt runmefirst` step below|
 | `grunt runmefirst` | will run run-me-first.bat for all projects |
