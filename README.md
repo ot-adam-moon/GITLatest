@@ -48,7 +48,9 @@ Powershell Setup with GIT
 
 Install posh-git
 ----------------
-* from `posh-git` folder in `OT-Setup` run `install.ps1` 
+* in same `Powershell` tab in `Console2`
+* `cd` to `posh-git` folder in `OT-Setup` folder
+* run `.\install.ps1` 
 
 Initial Setup
 -------------
