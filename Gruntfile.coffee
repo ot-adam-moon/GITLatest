@@ -2,7 +2,7 @@ module.exports = (grunt) ->
   config = require("./projectsConfig")
   gitScripts = '.\\scripts\\git\\'
   otScripts = '.\\scripts\\ot\\'
-
+  fs = require("fs")
   async = require("async")
   spawn = require('child_process').spawn
   growl = require('growl')
@@ -86,13 +86,18 @@ module.exports = (grunt) ->
     run otScripts + 'RAKE_SQL.cmd',this.async(), config.dbProjects, true
   grunt.registerTask 'rakesql', 'RAKE SQL', () ->
     run otScripts + 'RAKE_SQL.cmd',this.async(), config.dbProjects, true
-  grunt.registerTask 'pf', "GIT PULL UPSTREAM MASTER, GIT PULL --REBASE, RUN ME FIRST for ProductFulfillment", () ->
+  grunt.registerTask 'pf', "RUN ME FIRST for Product Fulfilmment", () ->
     proj = 'ProductFulfillment'
     grunt.task.run('rb')
+  grunt.registerTask 'otf', "RUN ME FIRST for OneTechnologies.Framework", () ->
+     proj = 'Onetechnologies.Framework'
+     grunt.task.run('rb')
 
   # Make task shortcuts
   grunt.registerTask 'fromscratch', ['webstop','svcu','del','clone','rmf','certs']
   grunt.registerTask 'default', ['pum']
+  grunt.registerTask 'ot', ['ot']
+  grunt.registerTask 'runmefirst', ['rmf','pf']
   grunt.registerTask 'update', ['pum','rmf','pf','certs']
   grunt.registerTask 'up', ['web','svc']
 
@@ -132,34 +137,25 @@ module.exports = (grunt) ->
 
   cmd = (script, project, callback, branch, detached) ->
     unless typeof (branch) is "undefined"
-      console.log (script + " " + project + " " + branch)
+      console.log ('\n'+script + " " + project + " " + branch)
     else
-      console.log (script + " " + project)
+      console.log ('\n'+script + " " + project)
     args = [project]
     unless typeof (branch) is "undefined"
       args.push branch
 
-    cmdProcess = spawn script, args, {detached: detached}
+    fs = require('fs')
+    logFile = './logs/' + script.replace('.cmd','').replace('.\\scripts\\ot\\','').replace('.\\scripts\\git\\','') + '.' + project + '.log'
+    errorFile = './logs/' + script.replace('.cmd','').replace('.\\scripts\\ot\\','').replace('.\\scripts\\git\\','') + '.' + project + '.log'
 
+    console.log logFile
+    out = fs.openSync(logFile, 'w')
+    err = fs.openSync(errorFile, 'w')
+
+    cmdProcess = spawn script, args, {detached: false, stdio: [ 'pipe', out, err ]}
+#    cmdProcess.unref()
     cmdProcess.proj = project
     that = cmdProcess
-
-    cmdProcess.stdout.on "data", (data) ->
-      if !that.proj
-         that.proj = ''
-      console.log '\n' +  that.proj + ":  " +  '\n-----------------------------------\n' + data + '\n-----------------------------------\n'
-
-    cmdProcess.stderr.on "error", (error) ->
-      console.log(that.proj)
-      if !that.proj
-        that.proj = ''
-      console.log '\n' +  that.proj + ":" +  '\n-----------------------------------\n' + error + '\n-----------------------------------\n'
-
-    cmdProcess.stderr.on 'data', (data) ->
-      console.log('\n' + data + '\n-----------------------------------\n')
-
-    cmdProcess.stdin.on "data", (chunk) ->
-      cmdProcess.stdout.write "\ndata: " + chunk
 
     cmdProcess.on "exit", (code) ->
       if !that.proj
@@ -167,6 +163,7 @@ module.exports = (grunt) ->
       msg = '\n' +  that.proj + " " + script.replace(otScripts,'').replace(gitScripts,'') + ' COMPLETED\n-----------------------------------\n'
       grunt.log.write msg
       growlMsg(msg)
+
       callback(null, "")
 
   growlMsg = (msg) ->
