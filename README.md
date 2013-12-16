@@ -2,8 +2,8 @@ OT Development Environment Setup
 ============================
 
 * Create root projects directory. Example c:\projects\
-* Provided is a OT-Setup.zip file
-* unzip OT-Setup files in {Projects Directory}
+* Provided is an `OT-Setup.zip` file
+* unzip `OT-Setup` files in {ProjectsRoot}
       
 
 git setup
@@ -13,13 +13,12 @@ git setup
 
 Install Nodejs
 --------------
-* Install [node.js](http://nodejs.org/) or copy install file from nodejs folder in OT-Setup folder
+* execute installer in `nodejs` folder in `OT-Setup` folder
 
 Install Ruby
 ------------
-[Ruby for Windows](http://rubyinstaller.org/) or copy install file from ruby folder in OT-Setup folder
-
-* During the installer select the checkbox to add bin directory to PATH Environment Variable
+* Execute installer file from `ruby` folder in `OT-Setup` folder
+* During the install select the checkbox to add bin directory to PATH Environment Variable
 * After installing Ruby make sure to reopen powershell window because PATH Environment change
 
 REBOOT BOX AT THIS POINT
@@ -28,68 +27,92 @@ REBOOT BOX AT THIS POINT
 Install Console2
 ----------------
 
-[Console2 download] (http://sourceforge.net/projects/console/files/)
-
-* Copy Console2 folder from OT-Setup folder to c:\Program Files\
+* Copy `Console2` folder from `OT-Setup` folder to c:\Program Files\
 * Open Console2.exe as Administrator
 * Click Edit > Settings ... in Menu
-* Make sure under the tab settings you have a tab created for powershell.exe and gitbash
+* Add the following tabs
+-------------
+* `Powershell`  Shell: `%SystemRoot%\system32\WindowsPowerShell\v1.0\powershell.exe`
+                Startup dir: `{ProjectsRoot}\GITLatest\`
+* `GitBash`     Shell: `C:\Windows\SysWOW64\cmd.exe /c "C:\Program Files (x86)\Git\bin\sh.exe" --login -i`
+                Startup dir: `{ProjectsRoot}\SpendOnLife\`
 
-Powershell
------------------------------
-   NOTE: If you edit the PATH Environment Variable in the task below, you will need to restart 
+      
+Powershell Setup with GIT
+-------------------------
+  
 
-* Open 
-* Run `Set-ExecutionPolicy Unrestricted -Scope CurrentUser -Confirm`
+* Open Powershell Tab in Console2
+* Run Command -> `Set-ExecutionPolicy Unrestricted -Scope CurrentUser -Confirm`
 
 Install posh-git
 ----------------
-* from `posh-git` folder in `OT-Setup` run `install.ps1` 
+* in same `Powershell` tab in `Console2`
+* `cd` to `posh-git` folder in `OT-Setup` folder
+* run `.\install.ps1` 
+* Close `Console2` and reopen as Administrator
 
-Initial Pre Setup
+Initial Setup
 -------------
-* Inside {ProjectsRoot} Directory create a directory called `certs`
-* Copy`certs` directory from OT-Setup folder
-* Copy `SpendOnLife-v15.bak` and `Tracking-v2.bak` to `C:\Program Files\Microsoft SQL Server\MSSQL{NUMBER}.MSSQLSERVER\MSSQL\Backup`
+* Copy`certs` directory from OT-Setup folder and paste into {ProjectsDirectory}
 
-
-GITLatest
+Setup GITLatest
 -------------
-* `cd ProjectsRootDirectoryYouChose`
+* `cd {ProjectsRoot}`
 * Run `git clone git@github.com:ot-adam-moon/GITLatest.git`
-* `npm install`
+* Run `npm install`
 
-Starting from scratch
----------------------
+Ready to Pull Application Code and Get Started
+----------------------------------------------
 
-| grunt command | what it does  |
+| do this | what it does  |
 | ------------- |:-------------:|
-| `grunt clone` | clone all necessary repositories from GitHub into {Projects Directory} |
-| `git remote add origin git@github.com:{github-username}/SpendOnLife.git` | clone all necessary repositories from GitHub into {Projects Directory} |
+| `grunt clone` | clone all necessary repositories from GitHub into `{ProjectsRoot}` |
+| Copy `SpendOnLife-v15.bak` and `Tracking-v2.bak` located in `OT-Setup\DB\` to `C:\Program Files\Microsoft SQL Server\MSSQL{NUMBER}.MSSQLSERVER\MSSQL\Backup`| will be used for restoring DBs in `grunt runmefirst` step below |
+| Copy `sql.build` located in `OT-Setup\` to `{ProjectsRoot}\SpendOnLife\SpendOnLife\`| will be used for restoring DBs in `grunt runmefirst` step below|
 | `grunt runmefirst` | will run run-me-first.bat for all projects |
-| `grunt up` | will make sure all webs and Windows services are started, run `grunt webstart` and `grunt svcstart`|
+| `grunt up` | will start all Windows services and webs |
 | `grunt certs` | will install all necessary certs for development needs |
-   
-Have all the code but want to make sure you are running latest code
--------------------------------------------------------------------
 
-| grunt command | what it does  |
-| ------------- |:-------------:|
-| `grunt update` | pulls latest from master for each repository, refreshes services, webs, and database, reinstalls certificates |
 
-You just want to pull latest code
+Setup SpendOnLife
+-----------------
+
+* login to gihub.com, go to `https://github.com/OneTechLP/SpendOnLife`, click on the Fork button, allow to finish forking
+* open `gitbash` tab in `Console2`
+* in the `gitbash` tab run the following git command to add a remote: 
+      `git remote add origin git@github.com:{githubUsername}/SpendOnLife.git `
+* Use `gitbash tab` for all git commands need to commit code for SpendOnLife Marketing Projects`
+
+Troubleshooting Errors during Enrollment Path
+---------------------------------------------
+* inside Powershell tab
+* `cd` to `OT-Setup\SqlReportManager`
+* run -> `startIISExpressWeb.bat`
+* open chrome browser and go to `http://localhost:6611`
+
+
+* Use `GITLatest` Powershell tab for getting updated code for all projects, starting and stopping webs and windows services
+-------
+
+Common Scenarios for using `GITLatest`
+
+Pull latest code and make sure latest code is running
 ---------------------------------
 
 | grunt command | what it does  |
 | ------------- |:-------------:|
 | `grunt pullmaster` | will run `git submodule update`, `git pull upstream master` for each project |
+| `grunt runmefirst` | will recompile all code and rebuild databases for all projects |
+| `grunt up` | will attempt to start all Windows services and webs|
 
-You rebooted you box and you want to start everything up
+
+Rebooted your computer and need to start everything up
 --------------------------------------------------------
 
 | grunt command | what it does  |
 | ------------- |:-------------:|
-| `grunt up` | `webutil.bat all`, `svcutil.bat start` for each project|
+| `grunt up` | will attempt to start all Windows services and webs|
 
 
 
@@ -120,20 +143,13 @@ Ex:
 
 project reference list
 ----------------------
-spl - SpendOnLife
-pf  - ProductFulfillment
-es  - EnterpriseServices
-ot  - OneTechnologies.Framework
-cf  - CustomerFiltering
+      * spl - SpendOnLife
+      * pf  - ProductFulfillment
+      * es  - EnterpriseServices
+      * ot  - OneTechnologies.Framework
+      * cf  - CustomerFiltering
 
 
-SpendOnLife
------------
-
-Steps to take for new Marketing Project
-
-* open Powershell tab inside `Console2`, `cd` to `GITLatest` directory `Use for getting updated code for all projects, manages starting and stopping webs and windows services`
-* open `git bash` tab in `Console2 `, `cd` to `SpendOnLife` directory `Use for all git commands for SpendOnLife`
 
 
  
