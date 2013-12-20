@@ -41,9 +41,9 @@ module.exports = (grunt) ->
   grunt.registerTask 'del', () ->
     run otScripts + 'DELETE_ALL.cmd ',this.async(), config.allProjects, true
   grunt.registerTask 'svc', 'SvcUtil Start', () ->
-    run otScripts + 'SVCUTIL.cmd Restart',this.async(), config.svcProjects, false
+    run otScripts + 'SVCUTIL.cmd',this.async(), config.svcProjects, false
   grunt.registerTask 'svcstart', 'SvcUtil Start', () ->
-    run otScripts + 'SVCUTIL.cmd Restart',this.async(), config.svcProjects, false
+    run otScripts + 'SVCUTIL.cmd',this.async(), config.svcProjects, false
   grunt.registerTask 'svcstop', 'SvcUtil Stop', () ->
     run otScripts + 'SVCUTIL.cmd',this.async(), config.svcProjects, false
   grunt.registerTask 'com', 'GIT CHECKOUT MASTER', () ->
