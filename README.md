@@ -43,7 +43,7 @@ Powershell Setup with GIT
   
 
 * Open Powershell Tab in Console2
-* Run Command -> `Set-ExecutionPolicy Unrestricted -Scope CurrentUser -Confirm`
+* Run Command -> `Set-ExecutionPolicy Bypass -Scope CurrentUser -Confirm`
 
 Install posh-git
 ----------------
@@ -61,6 +61,18 @@ Setup GITLatest
 * `cd {ProjectsRoot}`
 * Run `git clone git@github.com:ot-adam-moon/GITLatest.git`
 * Run `npm install`
+
+
+Setup SQL Server Configuration and Permissions
+---------------------------------------------
+* Open `SQL Server Configuration Manager`
+* Expand `SQL Server Network Configuration` in left panel
+* click `Protocols for MSSQLSERVER`
+* in right panel make sure that `Named Pipes` and `TCP/IP` are enabled
+* click `Sql Server Services` in left panel
+* for `Sql Server (MSSQLSERVER)` make sure `Log On As` is set to `LocalSystem` 
+* if it is not
+
 
 Ready to Pull Application Code and Get Started
 ----------------------------------------------
