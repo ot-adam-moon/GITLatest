@@ -71,7 +71,9 @@ Ready to Pull Application Code and Get Started
 | Copy `SpendOnLife-v15.bak` and `Tracking-v2.bak` located in `OT-Setup\DB\` to `C:\Program Files\Microsoft SQL Server\MSSQL{NUMBER}.MSSQLSERVER\MSSQL\Backup`| will be used for restoring DBs in `grunt runmefirst` step below |
 | Copy `sql.build` located in `OT-Setup\` to `{ProjectsRoot}\SpendOnLife\SpendOnLife\`| will be used for restoring DBs in `grunt runmefirst` step below|
 | `grunt runmefirst` | will run run-me-first.bat for all projects |
-| `grunt up` | will start all Windows services and webs |
+| `grunt svcinstall` | will install Windows services |
+| `grunt webstart` | will start all webs |
+| `grunt svcstart` | will start all Windows services |
 | `grunt certs` | will install all necessary certs for development needs |
 
 
