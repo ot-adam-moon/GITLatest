@@ -76,6 +76,15 @@ Ready to Pull Application Code and Get Started
 | `grunt svcstart` | will start all Windows services |
 | `grunt certs` | will install all necessary certs for development needs |
 
+Check that all Windows Services are started
+-----------------------------------------
+* Open Services Window
+* Check the following services are started
+    * `Customer Filtering Host`
+    * `Payment Service Host`
+    * `Enterprise Services`
+    * `One Technologies Web Api`
+    * `Product Fulfillment ESB`
 
 Setup SpendOnLife
 -----------------
