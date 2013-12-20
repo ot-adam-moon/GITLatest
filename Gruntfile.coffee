@@ -33,16 +33,18 @@ module.exports = (grunt) ->
   grunt.registerTask 'svcinstall', 'Services Install', () ->
     run otScripts + 'SVC_INSTALL.cmd',this.async(), config.svcProjects, true
   grunt.registerTask 'web','WebUtil All', () ->
-    run otScripts + 'WEBUTIL.cmd ',this.async(), config.webProjects, false
+    run otScripts + 'WEBUTIL.cmd',this.async(), config.webProjects, false
   grunt.registerTask 'webstart','WebUtil All', () ->
-    run otScripts + 'WEBUTIL.cmd ',this.async(), config.webProjects, false
+    run otScripts + 'WEBUTIL.cmd',this.async(), config.webProjects, false
   grunt.registerTask 'webstop', 'WebUtil Stop',() ->
-    run otScripts + 'WEBUTIL_STOP.cmd ',this.async(), config.webProjects, false
+    run otScripts + 'WEBUTIL_STOP.cmd',this.async(), config.webProjects, false
   grunt.registerTask 'del', () ->
     run otScripts + 'DELETE_ALL.cmd ',this.async(), config.allProjects, true
   grunt.registerTask 'svc', 'SvcUtil Start', () ->
-    run otScripts + 'SVCUTIL.cmd',this.async(), config.svcProjects, false
+    run otScripts + 'SVCUTIL.cmd Restart',this.async(), config.svcProjects, false
   grunt.registerTask 'svcstart', 'SvcUtil Start', () ->
+    run otScripts + 'SVCUTIL.cmd Restart',this.async(), config.svcProjects, false
+  grunt.registerTask 'svcstop', 'SvcUtil Stop', () ->
     run otScripts + 'SVCUTIL.cmd',this.async(), config.svcProjects, false
   grunt.registerTask 'com', 'GIT CHECKOUT MASTER', () ->
     run gitScripts + 'GIT_CHECKOUT_MASTER.cmd',this.async(), true
@@ -100,6 +102,7 @@ module.exports = (grunt) ->
   grunt.registerTask 'runmefirst', ['rmf','pf']
   grunt.registerTask 'update', ['pum','rmf','pf','certs']
   grunt.registerTask 'up', ['web','svc']
+  grunt.registerTask 'stop', ['webstop','svcstop']
 
   setupWork = (script, cb, projList, detached) ->
     workList = []
