@@ -71,7 +71,7 @@ Setup SQL Server Configuration and Permissions
 * in right panel make sure that `Named Pipes` and `TCP/IP` are enabled
 * click `Sql Server Services` in left panel
 * for `Sql Server (MSSQLSERVER)` make sure `Log On As` is set to `LocalSystem` 
-* if it is not
+* if it is not right click on 
 
 
 Ready to Pull Application Code and Get Started
@@ -84,8 +84,7 @@ Ready to Pull Application Code and Get Started
 | Copy `sql.build` located in `OT-Setup\` to `{ProjectsRoot}\SpendOnLife\SpendOnLife\`| will be used for restoring DBs in `grunt runmefirst` step below|
 | `grunt runmefirst` | will run run-me-first.bat for all projects |
 | `grunt svcinstall` | will install Windows services |
-| `grunt webstart` | will start all webs |
-| `grunt svcstart` | will start all Windows services |
+| `grunt up` | will start all webs and Windows ervices |
 | `grunt certs` | will install all necessary certs for development needs |
 
 Check that all Windows Services are started
@@ -107,11 +106,13 @@ Setup SpendOnLife
       `git remote add origin git@github.com:{githubUsername}/SpendOnLife.git `
 * Use `gitbash tab` for all git commands need to commit code for SpendOnLife Marketing Projects`
 
-Troubleshooting Errors during Enrollment Path
+Setup SqlReportManager which will allow you view Recent Errors and Clear User Info to Re-Enroll with Same User
 ---------------------------------------------
 * inside Powershell tab
 * `cd` to `OT-Setup\SqlReportManager`
-* run -> `startIISExpressWeb.bat`
+* open `applicationConfig.xml`
+* 
+* run as Administrator -> `startIISExpressWeb.bat`
 * open chrome browser and go to `http://localhost:6611`
 
 
