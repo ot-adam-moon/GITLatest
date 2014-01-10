@@ -1,182 +1,110 @@
-OT Development Environment Setup
-============================
+GITLatest
+=========
 
-* Create root projects directory. Example c:\projects\
-* Provided is an `OT-Setup.zip` file
-* unzip `OT-Setup` files in {ProjectsRoot}
-      
+Using Node.js async to Run in Parallel All Necessary GIT/System Bootstrap Commands to Setup & Maintain Local Box for Development.
 
-git setup
----------
-* [Setup Git] (https://help.github.com/articles/set-up-git)
-* [Generate SSH Keys for git] https://help.github.com/articles/generating-ssh-keys
+Motivation
+==========
+  *  setup a box for development from scratch with one script
+  *  <code>git pull upstream master</code> or <code>git pull rebase</code> without having 5 Powershell or GIT Bash windows open.
+  *  command to run against all necessary projects in parallel
+  *  flexibility to run cmd for one project or for all projects
+  *  a quick way to run <code>rake bootstrap</code> for all projects in parallel
+  *  don't want to be afraid to reboot my box anymore fearing things won't work.
 
-Install Nodejs
---------------
-* execute installer in `nodejs` folder in `OT-Setup` folder
+Setup
+=====
 
-Install Ruby
-------------
-* Execute installer file from `ruby` folder in `OT-Setup` folder
-* During the install select the checkbox to add bin directory to PATH Environment Variable
-* After installing Ruby make sure to reopen powershell window because PATH Environment change
+* Install [node.js](http://nodejs.org/)
+* Install [Growl for Windows](http://www.growlforwindows.com/gfw/) *Note: THIS IS OPTIONAL
+* Make sure all projects are under one directory Ex: Projects\
+* `cd ProjectsFolderYouChoose`
+* `git clone git@github.com:ot-adam-moon/GITLatest.git`
+* `npm install .`
+* `grunt`  *NOTE: this will run `git status` for all projects
 
-REBOOT BOX AT THIS POINT
-------------------------
+How do I control the project list?
+----------------------------------
 
-Install Console2
-----------------
+* Open gruntfile.coffee
+* 2nd line <code>projects = [...]</code>
+* edit array to control the Project List
 
-* Copy `Console2` folder from `OT-Setup` folder to c:\Program Files\
-* Open Console2.exe as Administrator
-* Click Edit > Settings ... in Menu
-* Add the following tabs
--------------
-* `Powershell`  Shell: `%SystemRoot%\system32\WindowsPowerShell\v1.0\powershell.exe`
-                Startup dir: `{ProjectsRoot}\GITLatest\`
-* `GitBash`     Shell: `C:\Windows\SysWOW64\cmd.exe /c "C:\Program Files (x86)\Git\bin\sh.exe" --login -i`
-                Startup dir: `{ProjectsRoot}\SpendOnLife\`
-
-      
-Powershell Setup with GIT
--------------------------
-  
-
-* Open Powershell Tab in Console2
-* Run Command -> `Set-ExecutionPolicy Bypass -Scope CurrentUser -Confirm`
-
-Install posh-git
-----------------
-* in same `Powershell` tab in `Console2`
-* `cd` to `posh-git` folder in `OT-Setup` folder
-* run `.\install.ps1` 
-* Close `Console2` and reopen as Administrator
-
-Initial Setup
--------------
-* Copy`certs` directory from OT-Setup folder and paste into {ProjectsDirectory}
-
-Setup GITLatest
--------------
-* `cd {ProjectsRoot}`
-* Run `git clone git@github.com:ot-adam-moon/GITLatest.git`
-* Run `npm install`
-
-
-Setup SQL Server Configuration and Permissions
----------------------------------------------
-* Open `SQL Server Configuration Manager`
-* Expand `SQL Server Network Configuration` in left panel
-* click `Protocols for MSSQLSERVER`
-* in right panel make sure that `Named Pipes` and `TCP/IP` are enabled
-* click `Sql Server Services` in left panel
-* for `Sql Server (MSSQLSERVER)` make sure `Log On As` is set to `LocalSystem` 
-* if it is not right click on 
-
-
-Ready to Pull Application Code and Get Started
+Run a task for all projects and current branch
 ----------------------------------------------
 
-| do this | what it does  |
-| ------------- |:-------------:|
-| `grunt clone` | clone all necessary repositories from GitHub into `{ProjectsRoot}` |
-| Copy `SpendOnLife-v15.bak` and `Tracking-v2.bak` located in `OT-Setup\DB\` to `C:\Program Files\Microsoft SQL Server\MSSQL{NUMBER}.MSSQLSERVER\MSSQL\Backup`| will be used for restoring DBs in `grunt runmefirst` step below |
-| Copy `sql.build` located in `OT-Setup\` to `{ProjectsRoot}\SpendOnLife\SpendOnLife\`| will be used for restoring DBs in `grunt runmefirst` step below|
-| `grunt runmefirst` | will run run-me-first.bat for all projects |
-| `grunt svcinstall` | will install Windows services |
-| `grunt up` | will start all webs and Windows ervices |
-| `grunt certs` | will install all necessary certs for development needs |
+ grunt {task}
 
-Check that all Windows Services are started
------------------------------------------
-* Open Services Window
-* Check the following services are started
-    * `Customer Filtering Host`
-    * `Payment Service Host`
-    * `Enterprise Services`
-    * `One Technologies Web Api`
-    * `Product Fulfillment ESB`
-
-Setup SpendOnLife
------------------
-
-* login to gihub.com, go to `https://github.com/OneTechLP/SpendOnLife`, click on the Fork button, allow to finish forking
-* open `gitbash` tab in `Console2`
-* in the `gitbash` tab run the following git command to add a remote: 
-      `git remote add origin git@github.com:{githubUsername}/SpendOnLife.git `
-* Use `gitbash tab` for all git commands need to commit code for SpendOnLife Marketing Projects`
-
-Setup SqlReportManager which will allow you view Recent Errors and Clear User Info to Re-Enroll with Same User
+Run a task for one project and current branch
 ---------------------------------------------
-* inside Powershell tab
-* `cd` to `OT-Setup\SqlReportManager`
-* open `applicationConfig.xml`
-* 
-* run as Administrator -> `startIISExpressWeb.bat`
-* open chrome browser and go to `http://localhost:6611`
+
+ grunt {task} --proj {projectName}
+
+Run a task for all projects but for custom branch
+-------------------------------------------------
+
+ grunt {task} --br ReleaseXXXXX
+
+Run a task for one project and custom branch
+--------------------------------------------
+
+ grunt {task} --proj {projectName} --br ReleaseXXXXX
 
 
-* Use `GITLatest` Powershell tab for getting updated code for all projects, starting and stopping webs and windows services
--------
+Rebooted my box and want everything started up
+----------------------------------------------
+* cd Projects\GITLatest
+* grunt up
 
-Common Scenarios for using `GITLatest`
+Build Projects from Scratch
+---------------------------
 
-Pull latest code and make sure latest code is running
----------------------------------
-
-| grunt command | what it does  |
-| ------------- |:-------------:|
-| `grunt pullmaster` | will run `git submodule update`, `git pull upstream master` for each project |
-| `grunt runmefirst` | will recompile all code and rebuild databases for all projects |
-| `grunt up` | will attempt to start all Windows services and webs|
-
-
-Rebooted your computer and need to start everything up
---------------------------------------------------------
-
-| grunt command | what it does  |
-| ------------- |:-------------:|
-| `grunt up` | will attempt to start all Windows services and webs|
-
-
-
-Full Command Reference
------------------------
-| grunt command | what it does  |
-| ------------- |:-------------:|
-| `grunt pullmaster` | `git submodule update`, `git pull upstream master` for all projects |
-| `grunt runmefirst` | `run-me-first.bat` |
-| `grunt sql` | rebuilds Database for all projects |
-| `grunt webstart` | Starts all webs|
-| `grunt webstop` | Stops all webs |
-| `grunt svcstart` | Starts up all necessary windows services |
-| `grunt svcuninstall` | Uninstall all window services installed previously |
-| `grunt svcinstall` | Install all necessary windows services |
-| `grunt up` | starts all webs and window services necessary |
-| `grunt certs` | installs necessary certificates needed |
-
-To Run a Task for just one Application
---------------------------------------
-
-Ex: 
-   `grunt pullmaster --proj spl`
-   `grunt pullmaster --proj pf`
-   `grunt pullmaster --proj es`
-   `grunt pullmaster --proj ot`
-   `grunt pullmaster --proj cf`
-
-project reference list
-----------------------
-      * spl - SpendOnLife
-      * pf  - ProductFulfillment
-      * es  - EnterpriseServices
-      * ot  - OneTechnologies.Framework
-      * cf  - CustomerFiltering
-
-
-
+* create a new directory where you want all projects to be under
+* <code>cd directoryYouChose</code>
+* <code>grunt scratch</code>
+<br/>
+What does this do?
+ * stops all current webs running
+ * uninstall all services installed for the projects listed
+ * delete all folders that match each project name
+ * <code>git clone</code> for all projects
+ * runs run_me_first.bat for each project
 
  
+Command List
+------------
 
-
-
+| grunt command | what it does  |
+| ------------- |:-------------:|
+| `grunt` | `git submodule update, git pull upstream master` |
+| `grunt default` | `git pull upstream master` |
+| `grunt st` | `git status` |
+| `grunt gui` | `git gui` |
+| `grunt pum` | `git submodule update`, `git pull upstream master` |
+| `grunt pom` | `git submodule update`, `git pull origin master` |
+| `grunt pom` | `git submodule update`, `git pull origin master` |
+| `grunt pub --br {branchname}` | `git submodule update`, `git pull upstream master`,`git pull upstream {branchname}`
+| `grunt pr` | `git submodule update`, `git pull rebase` |
+| `grunt clone` | `git clone` |
+| `grunt clean` | `git clean -f` |
+| `grunt com` | `git checkout master` |
+| `grunt cob --br {branchname}` | `git checkout --br [branchname]` |
+| `grunt ctb --br {branchname}` | `git fetch, git checkout -t {branchname}` |
+| `grunt su` | `git submodule update` |
+| `grunt stash` | `git stash` |
+| `grunt stashp` | `git stash pop` |
+| `grunt rh` | `git reset head --hard` |
+| `grunt rmf` | `run-me-first.bat` |
+| `grunt rb` | `rake bootstrap` |
+| `grunt rsql` | `rake sql` |
+| `grunt db` | `rebuild-db.bat` |
+| `grunt rc` | `rebuild-config.bat` |
+| `grunt web` | `webutil.bat all` |
+| `grunt webstop` | `webutil.bat stop` |
+| `grunt svc` | `svcutil.bat start` |
+| `grunt svcu` | `svcutil.bat u` |
+| `grunt svci` | `svcutil.bat i` |
+| `grunt up` | `webutil.bat all`, `svcutil.bat start` |
+| `grunt sanity` | `git submodule update`, `git pull upstream master`, `run-me-first.bat` |
+| `grunt certs` | `installs necessary certs with INSTALL_CERTS.cmd` |
+| `grunt scratch` | `webutil.bat stop`, `svcutil.bat u`, `RD "%project%" /S /Q`, `git clone, run-me-first.bat` |
